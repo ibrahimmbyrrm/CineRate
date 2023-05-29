@@ -97,6 +97,12 @@
 		803B6A812A24F40D00636C42 /* CineRate */ = {
 			isa = PBXGroup;
 			children = (
+				803B6AB72A24F48100636C42 /* Extensions */,
+				803B6AB62A24F47C00636C42 /* Views */,
+				803B6AB52A24F47600636C42 /* ViewModels */,
+				803B6AB42A24F47300636C42 /* Models */,
+				803B6AB32A24F47000636C42 /* Services */,
+				803B6AB22A24F46C00636C42 /* Controllers */,
 				803B6A822A24F40D00636C42 /* AppDelegate.swift */,
 				803B6A842A24F40D00636C42 /* SceneDelegate.swift */,
 				803B6A882A24F40D00636C42 /* Main.storyboard */,
@@ -122,6 +128,48 @@
 				803B6AA52A24F40E00636C42 /* CineRateUITestsLaunchTests.swift */,
 			);
 			path = CineRateUITests;
+			sourceTree = "<group>";
+		};
+		803B6AB22A24F46C00636C42 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		803B6AB32A24F47000636C42 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		803B6AB42A24F47300636C42 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		803B6AB52A24F47600636C42 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		803B6AB62A24F47C00636C42 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		803B6AB72A24F48100636C42 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
