@@ -110,5 +110,10 @@ class LoginController : UIViewController {
         }
     }
     
+    private func userLoggedIn() {
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        performSegue(withIdentifier: "toHome", sender: nil)
+    }
+    
   
 }

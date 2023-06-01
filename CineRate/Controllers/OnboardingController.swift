@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class OnboardingController: UIViewController {
         private let onboardingListViewModel = OnboardingListViewModel()
@@ -43,6 +44,7 @@ class OnboardingController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             setupViews()
+            
         }
     
         // MARK: -Setup All UI Objects and Properties
@@ -83,7 +85,6 @@ class OnboardingController: UIViewController {
          
     
     @objc private func nextButtonTapped() {
-        
         if currentPageIndex == onboardingListViewModel.lastIndex {
             performSegue(withIdentifier: "toLogin", sender: nil)
         } else {
