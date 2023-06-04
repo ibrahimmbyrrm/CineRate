@@ -10,13 +10,14 @@ import UIKit
 import Firebase
 
 class HomeController : UIViewController {
-    
+    // MARK: - Programmatic UI Objects
     private let segmentedControl : UISegmentedControl = {
         let segmented = UISegmentedControl()
         segmented.insertSegment(withTitle: "Popular", at: 0, animated: true)
         segmented.insertSegment(withTitle: "Top Rated", at: 1, animated: true)
         segmented.insertSegment(withTitle: "Upcoming", at: 2, animated: true)
         segmented.selectedSegmentIndex = 0
+        segmented.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
         segmented.selectedSegmentTintColor = .blue
         segmented.tintColor = .white
         return segmented
@@ -40,12 +41,13 @@ class HomeController : UIViewController {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let toolbarButton = UIBarButtonItem(title: "Toolbar Button", style: .plain, target: self, action: #selector(signOutClicked))
         toolbar.tintColor = .red
+        toolbar.barTintColor = UIColor(red: 173/255, green: 219/255, blue: 164/255, alpha: 1)
         toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
         return toolbar
        }()
+    // MARK: -
     
     var listVM = MovieListViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -54,7 +56,11 @@ class HomeController : UIViewController {
         listVM.getData { isSuccess in
             isSuccess ? self.collectionView.reloadAsync() : print("fuck")
         }
-        title = "asd"
+        title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
+    }
+    
+    @objc func segmentChanged(_ segment : UISegmentedControl) {
+        self.title = segment.titleForSegment(at: segment.selectedSegmentIndex)
     }
     
     @objc func signOutClicked() {
@@ -65,8 +71,8 @@ class HomeController : UIViewController {
     }
     
     func setupViews() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Button", style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Button", style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: nil)
             
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)

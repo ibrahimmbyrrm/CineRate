@@ -20,8 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
        if Auth.auth().currentUser != nil {
             let board = UIStoryboard(name: "Main", bundle: nil)
-            let homeVC = board.instantiateViewController(withIdentifier: "HomeController")
-            window?.rootViewController = homeVC
+           let homeVC = board.instantiateViewController(withIdentifier: "HomeController") as! HomeController
+           let navigationController = UINavigationController(rootViewController: homeVC)
+           window?.rootViewController = navigationController
         }
         
     }

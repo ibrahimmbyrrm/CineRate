@@ -14,7 +14,7 @@ struct Constants {
     static let defaultImageUrl = "https://image.tmdb.org/t/p/w300/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"
     
     static let httpHeader = [
-        "Authorization": "Bearer \(ProcessInfo.processInfo.environment["API_KEY"])"
+        "Authorization": "Bearer \(String(describing: ProcessInfo.processInfo.environment["API_KEY"]))"
     ]
     
 }
