@@ -1,49 +1,60 @@
 //
-//  HomeController.swift
+//  HomeControllerr.swift
 //  CineRate
 //
-//  Created by İbrahim Bayram on 1.06.2023.
+//  Created by İbrahim Bayram on 4.06.2023.
 //
 
+import Foundation
 import UIKit
 import Firebase
-import SDWebImage
 
-class Film {
-    var ad: String
-    var foto: UIImage
+class HomeController : UIViewController {
     
-    init(ad: String, foto: UIImage) {
-        self.ad = ad
-        self.foto = foto
-    }
-}
-
-class AnaEkranCollectionViewController: UICollectionViewController {
+    private let segmentedControl : UISegmentedControl = {
+        let segmented = UISegmentedControl()
+        segmented.insertSegment(withTitle: "Popular", at: 0, animated: true)
+        segmented.insertSegment(withTitle: "Top Rated", at: 1, animated: true)
+        segmented.insertSegment(withTitle: "Upcoming", at: 2, animated: true)
+        segmented.selectedSegmentIndex = 0
+        segmented.selectedSegmentTintColor = .blue
+        segmented.tintColor = .white
+        return segmented
+    }()
+    
+    private let collectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 10
+        let itemWidth = (UIScreen.main.bounds.width - (spacing * 3)) / 2
+        layout.itemSize = CGSize(width: itemWidth, height: 200)
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        layout.minimumLineSpacing = spacing
+        layout.minimumInteritemSpacing = spacing
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .darkGray
+        collectionView.register(FilmCollectionViewCell.self, forCellWithReuseIdentifier: "FilmCell")
+        return collectionView
+    }()
+    private let toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let toolbarButton = UIBarButtonItem(title: "Toolbar Button", style: .plain, target: self, action: #selector(signOutClicked))
+        toolbar.tintColor = .red
+        toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
+        return toolbar
+       }()
     
     var listVM = MovieListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         listVM.getData { isSuccess in
-            if isSuccess {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
+            isSuccess ? self.collectionView.reloadAsync() : print("fuck")
         }
-        setupUI()
-        
-    }
-    
-    private func setupUI() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 150)
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        collectionView.collectionViewLayout = layout
-        collectionView.register(FilmCollectionViewCell.self, forCellWithReuseIdentifier: "FilmCell")
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOutClicked))
+        title = "asd"
     }
     
     @objc func signOutClicked() {
@@ -53,21 +64,27 @@ class AnaEkranCollectionViewController: UICollectionViewController {
         self.present(loginVC, animated: true)
     }
     
-    // UICollectionViewDataSource metotları
+    func setupViews() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Button", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Button", style: .plain, target: self, action: nil)
+            
+        view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
+        view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+        view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+    }
+}
+
+extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource {
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listVM.numberOfRows(section)
         
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as! FilmCollectionViewCell
         let movieVM = listVM.itemAtIndex(indexPath.row)
-        cell.filmAdLabel.text = movieVM.title
-        cell.filmImageView.sd_setImage(with: movieVM.posterImage)
-        
+        cell.configureCell(viewModel: movieVM)
         return cell
     }
 }
-
-

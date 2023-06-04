@@ -13,7 +13,7 @@ class MovieListViewModel {
     var movieList = [Movie]()
     
     
-    let resource = Resource<InitialData>(URL: URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=2")!, method: .get)
+    let resource = Resource<InitialData>(URL: URL(string: Constants.moviesBaseUrl)!, method: .get)
     func getData(completion : @escaping(Bool)->Void) {
         Webservice().callApi(resource: resource) { result in
             switch result {
@@ -52,10 +52,10 @@ extension MovieViewModel {
     }
     
     var posterImage : URL {
-        if let url = URL(string: "https://image.tmdb.org/t/p/w300\(movie.poster_path)") {
+        if let url = URL(string: "\(Constants.imageBaseUrl)\(movie.poster_path)") {
             return url
         }else {
-            return URL(string: "https://image.tmdb.org/t/p/w300/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg")!
+            return URL(string: Constants.defaultImageUrl)!
         }
     }
 }

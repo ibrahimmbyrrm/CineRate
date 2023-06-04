@@ -13,9 +13,7 @@ struct Webservice {
     func callApi<T : Codable>(resource : Resource<T>,completion : @escaping(Result<T,httpError>) -> Void ) {
         var urlRequest = URLRequest(url: resource.URL)
         urlRequest.httpMethod = resource.method.rawValue
-        urlRequest.allHTTPHeaderFields = [
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTE1OTVmOGEwNDdmZDM2Nzk0NzBhY2QyZjY1NjI3ZSIsInN1YiI6IjYzZDY1ZDg2OTU1YzY1MDBhODQxMjQyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JAWjGs_vrbfsq66nPQQ_XpqneBn9NR-k_fM0RiON7w4"
-        ]
+        urlRequest.allHTTPHeaderFields = Constants.httpHeader
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             if error != nil {
                 completion(.failure(.badUrl))
