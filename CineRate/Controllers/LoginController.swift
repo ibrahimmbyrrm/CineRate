@@ -106,7 +106,7 @@ class LoginController : UIViewController {
         let method: authMethod = sender == signupButton ? .signup : .login
         let credentials = UserCredentials(email: email, password: password)
         authViewModel.authenticateUser(method: method, credentials: credentials) { isSuccess in
-            isSuccess ? print("basarili") : print("hata")
+            isSuccess ? self.performSegue(withIdentifier: "toHome", sender: nil) : print("hata")
         }
     }
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */; };
+		80095B0F2A2CD1D600365087 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */; };
+		80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80095B102A2CD1DF00365087 /* MovieModel.swift */; };
+		80095B142A2CD3EF00365087 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 80095B132A2CD3EF00365087 /* SDWebImage */; };
 		803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A822A24F40D00636C42 /* AppDelegate.swift */; };
 		803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A842A24F40D00636C42 /* SceneDelegate.swift */; };
 		803B6A8A2A24F40D00636C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 803B6A882A24F40D00636C42 /* Main.storyboard */; };
@@ -44,6 +48,12 @@
 		803B6AEB2A28D5BC00636C42 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEA2A28D5BC00636C42 /* HomeController.swift */; };
 		803B6AEC2A28D5BC00636C42 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEA2A28D5BC00636C42 /* HomeController.swift */; };
 		803B6AED2A28D5BC00636C42 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEA2A28D5BC00636C42 /* HomeController.swift */; };
+		803B6AEF2A28E0CB00636C42 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */; };
+		803B6AF02A28E0CB00636C42 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */; };
+		803B6AF12A28E0CB00636C42 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */; };
+		803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
+		803B6AF42A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
+		803B6AF52A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		80095B102A2CD1DF00365087 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		803B6A7F2A24F40D00636C42 /* CineRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		803B6A822A24F40D00636C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		803B6A842A24F40D00636C42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +100,8 @@
 		803B6ADC2A28D18B00636C42 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		803B6AE52A28D33400636C42 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		803B6AEA2A28D5BC00636C42 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		803B6AF22A28E0D000636C42 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +112,7 @@
 				803B6AD12A28C7E200636C42 /* FirebaseFirestoreSwift in Frameworks */,
 				803B6ACD2A28C7E200636C42 /* FirebaseDatabaseSwift in Frameworks */,
 				803B6ACF2A28C7E200636C42 /* FirebaseFirestore in Frameworks */,
+				80095B142A2CD3EF00365087 /* SDWebImage in Frameworks */,
 				803B6ACB2A28C7E200636C42 /* FirebaseDatabase in Frameworks */,
 				803B6AC92A28C7E200636C42 /* FirebaseAuth in Frameworks */,
 				803B6AD32A28C7E200636C42 /* FirebaseStorage in Frameworks */,
@@ -201,6 +217,7 @@
 			children = (
 				803B6ABD2A28B48700636C42 /* OnboardingModel.swift */,
 				803B6ADC2A28D18B00636C42 /* UserCredentials.swift */,
+				80095B102A2CD1DF00365087 /* MovieModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -210,6 +227,7 @@
 			children = (
 				803B6ABF2A28B50000636C42 /* OnboardingListViewModel.swift */,
 				803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */,
+				80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -218,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				803B6ABA2A26759E00636C42 /* OnboardingCell.swift */,
+				80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -258,6 +277,7 @@
 		803B6AE32A28D32900636C42 /* NetworkHelper */ = {
 			isa = PBXGroup;
 			children = (
+				803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */,
 			);
 			path = NetworkHelper;
 			sourceTree = "<group>";
@@ -265,6 +285,7 @@
 		803B6AE42A28D32C00636C42 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				803B6AF22A28E0D000636C42 /* Webservice.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -300,6 +321,7 @@
 				803B6ACE2A28C7E200636C42 /* FirebaseFirestore */,
 				803B6AD02A28C7E200636C42 /* FirebaseFirestoreSwift */,
 				803B6AD22A28C7E200636C42 /* FirebaseStorage */,
+				80095B132A2CD3EF00365087 /* SDWebImage */,
 			);
 			productName = CineRate;
 			productReference = 803B6A7F2A24F40D00636C42 /* CineRate.app */;
@@ -375,6 +397,7 @@
 			mainGroup = 803B6A762A24F40D00636C42;
 			packageReferences = (
 				803B6AC72A28C7E200636C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				80095B122A2CD3EF00365087 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 803B6A802A24F40D00636C42 /* Products */;
 			projectDirPath = "";
@@ -422,14 +445,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803B6AEF2A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AB92A2669C200636C42 /* OnboardingController.swift in Sources */,
 				803B6AC02A28B50000636C42 /* OnboardingListViewModel.swift in Sources */,
 				803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AD52A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */,
+				80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */,
 				803B6ABE2A28B48700636C42 /* OnboardingModel.swift in Sources */,
 				803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */,
 				803B6ABB2A26759E00636C42 /* OnboardingCell.swift in Sources */,
+				803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */,
+				80095B0F2A2CD1D600365087 /* MovieListViewModel.swift in Sources */,
 				803B6AEB2A28D5BC00636C42 /* HomeController.swift in Sources */,
 				803B6AC22A28BC5700636C42 /* LoginController.swift in Sources */,
 				803B6AE62A28D33400636C42 /* FirebaseHelper.swift in Sources */,
@@ -441,7 +469,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803B6AF02A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AD62A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				803B6AF42A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6ADE2A28D18B00636C42 /* UserCredentials.swift in Sources */,
 				803B6AEC2A28D5BC00636C42 /* HomeController.swift in Sources */,
 				803B6A9A2A24F40E00636C42 /* CineRateTests.swift in Sources */,
@@ -454,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803B6AF12A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AA62A24F40E00636C42 /* CineRateUITestsLaunchTests.swift in Sources */,
 				803B6AD72A28C7F000636C42 /* FirebaseService.swift in Sources */,
 				803B6AED2A28D5BC00636C42 /* HomeController.swift in Sources */,
@@ -461,6 +492,7 @@
 				803B6AA42A24F40E00636C42 /* CineRateUITests.swift in Sources */,
 				803B6AE82A28D33400636C42 /* FirebaseHelper.swift in Sources */,
 				803B6ADF2A28D18B00636C42 /* UserCredentials.swift in Sources */,
+				803B6AF52A28E0D000636C42 /* Webservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +819,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		80095B122A2CD3EF00365087 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		803B6AC72A28C7E200636C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -798,6 +838,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		80095B132A2CD3EF00365087 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80095B122A2CD3EF00365087 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		803B6AC82A28C7E200636C42 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 803B6AC72A28C7E200636C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
