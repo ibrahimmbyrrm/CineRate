@@ -39,7 +39,7 @@ class HomeController : UIViewController {
     private let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let toolbarButton = UIBarButtonItem(title: "Toolbar Button", style: .plain, target: self, action: #selector(signOutClicked))
+        let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutClicked))
         toolbar.tintColor = .red
         toolbar.barTintColor = UIColor(red: 173/255, green: 219/255, blue: 164/255, alpha: 1)
         toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
@@ -48,11 +48,14 @@ class HomeController : UIViewController {
     // MARK: -
     
     var listVM = MovieListViewModel()
+    var newResource = Resource<InitialData>(method: .get, listType: .popular, page: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         collectionView.delegate = self
         collectionView.dataSource = self
+        listVM.delegate = self
         listVM.getData { isSuccess in
             isSuccess ? self.collectionView.reloadAsync() : print("fuck")
         }
@@ -60,9 +63,23 @@ class HomeController : UIViewController {
     }
     
     @objc func segmentChanged(_ segment : UISegmentedControl) {
-        self.title = segment.titleForSegment(at: segment.selectedSegmentIndex)
+        
+        switch segment.selectedSegmentIndex {
+        case 0:
+            newResource.listType = .popular
+        case 1:
+            newResource.listType = .topRated
+            print("1 selected")
+        case 2:
+            newResource.listType = .upcoming
+        default:
+            break
+        }
+        self.listVM.resource = newResource
     }
     
+    
+
     @objc func signOutClicked() {
         try? Auth.auth().signOut()
         let loginVC = storyboard?.instantiateViewController(identifier: "LoginController") as! LoginController
@@ -72,15 +89,37 @@ class HomeController : UIViewController {
     
     func setupViews() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem?.action = #selector(previosClicked)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem?.action = #selector(nextClicked)
             
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
         view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
     }
+    
+    @objc func previosClicked() {
+        print("asdsaassfafas")
+        newResource.page -= 1
+        self.listVM.resource = newResource
+    }
+    @objc func nextClicked() {
+        newResource.page += 1
+        self.listVM.resource = newResource
+    }
+    
 }
 
-extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,ListUpdate {
+    
+    func reloadData() {
+        self.collectionView.reloadAsync()
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(listVM.movieList[indexPath.row].title)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listVM.numberOfRows(section)
