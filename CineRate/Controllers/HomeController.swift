@@ -52,7 +52,6 @@ class HomeController : UIViewController {
     }()
     
     private var listVM : MovieListViewModelProtocol = MovieListViewModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -64,7 +63,7 @@ class HomeController : UIViewController {
     
     func setupViews() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: #selector(changePage(_:)))
-        navigationItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isHidden = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: #selector(changePage(_:)))
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
@@ -95,12 +94,11 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     //When the movieList changed, viewModel called reloadData function with protocol and our collectionView reloads data async.Also changes next and previous buttons view.
     func reloadData() {
         DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem?.isEnabled = (self.listVM.resource.page > 1)
-                self.navigationItem.rightBarButtonItem?.isEnabled = (self.listVM.resource.page < 2)
+                self.navigationItem.leftBarButtonItem?.isHidden = !(self.listVM.resource.page > 1)
+                self.navigationItem.rightBarButtonItem?.isHidden = !(self.listVM.resource.page < 2)
         }
         self.collectionView.reloadAsync()
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(listVM.movieList[indexPath.row].id)

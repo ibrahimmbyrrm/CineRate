@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol ObserverDelegate {
-    func getData(completion : @escaping(Bool)->Void)
-}
-
 enum listType : String {
     case topRated = "top_rated"
     case popular = "popular"

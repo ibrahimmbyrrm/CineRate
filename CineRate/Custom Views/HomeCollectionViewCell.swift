@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class FilmCollectionViewCell: UICollectionViewCell {
-    let movieImageView: UIImageView = {
+    private let movieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -17,7 +17,7 @@ class FilmCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let movieNameLabel: UILabel = {
+    private let movieNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
