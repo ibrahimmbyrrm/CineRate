@@ -11,15 +11,20 @@ import Firebase
 
 
 protocol AuthenticationProtocol {
-    func authenticateUser(method : authMethod,credentials: UserCredentials, completion: @escaping (Bool) -> Void)
+    func authenticateUser(method : authMethod,credentials: UserCredentials?, completion: @escaping (Bool) -> Void)
 }
 
 class FirebaseAuthService: AuthenticationProtocol {
     static let shared = FirebaseAuthService()
     
-    func authenticateUser(method : authMethod,credentials: UserCredentials, completion: @escaping (Bool) -> Void) {
+    func authenticateUser(method : authMethod,credentials: UserCredentials?, completion: @escaping (Bool) -> Void) {
+        
         let authenticator = Auth.auth()
-        if method == .login {
+        
+        switch method {
+            
+        case .login:
+            guard let credentials = credentials else {return}
             authenticator.signIn(withEmail: credentials.email, password: credentials.password) { data, error in
                 if error != nil {
                     completion(false)
@@ -27,7 +32,9 @@ class FirebaseAuthService: AuthenticationProtocol {
                     completion(true)
                 }
             }
-        }else if method == .signup {
+            
+        case .signup:
+            guard let credentials = credentials else {return}
             authenticator.createUser(withEmail: credentials.email, password: credentials.password) { data, error in
                 if error != nil {
                     completion(false)
@@ -35,6 +42,13 @@ class FirebaseAuthService: AuthenticationProtocol {
                     completion(true)
                 }
             }
+            
+        case .signout:
+            try? authenticator.signOut()
+            completion(true)
+            
         }
     }
+        
 }
+    

@@ -55,6 +55,8 @@
 		803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
 		803B6AF42A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
 		803B6AF52A28E0D000636C42 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AF22A28E0D000636C42 /* Webservice.swift */; };
+		80DB11FB2A2E189B006BDA79 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB11FA2A2E189B006BDA79 /* CacheManager.swift */; };
+		80DB11FD2A2E19BD006BDA79 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB11FC2A2E19BD006BDA79 /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		803B6AE52A28D33400636C42 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		803B6AEE2A28E0CB00636C42 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		803B6AF22A28E0D000636C42 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		80DB11FA2A2E189B006BDA79 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		80DB11FC2A2E19BD006BDA79 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,7 @@
 		803B6AB32A24F47000636C42 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				80DB11F92A2E188F006BDA79 /* CacheManager */,
 				803B6AE12A28D31A00636C42 /* NetworkLayer */,
 				803B6AE02A28D31400636C42 /* FirebaseServices */,
 			);
@@ -259,6 +264,7 @@
 			children = (
 				801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */,
 				801C15C82A2D098D002D98B8 /* UIView+Extension.swift */,
+				80DB11FC2A2E19BD006BDA79 /* Array+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +317,14 @@
 				803B6AD42A28C7F000636C42 /* FirebaseService.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		80DB11F92A2E188F006BDA79 /* CacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				80DB11FA2A2E189B006BDA79 /* CacheManager.swift */,
+			);
+			path = CacheManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +479,7 @@
 				803B6AC02A28B50000636C42 /* OnboardingListViewModel.swift in Sources */,
 				803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AD52A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				80DB11FD2A2E19BD006BDA79 /* Array+Extension.swift in Sources */,
 				80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */,
 				80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */,
 				803B6ABE2A28B48700636C42 /* OnboardingModel.swift in Sources */,
@@ -473,6 +488,7 @@
 				803B6ABB2A26759E00636C42 /* OnboardingCell.swift in Sources */,
 				803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */,
+				80DB11FB2A2E189B006BDA79 /* CacheManager.swift in Sources */,
 				80095B0F2A2CD1D600365087 /* MovieListViewModel.swift in Sources */,
 				803B6AC22A28BC5700636C42 /* LoginController.swift in Sources */,
 				803B6AE62A28D33400636C42 /* FirebaseHelper.swift in Sources */,

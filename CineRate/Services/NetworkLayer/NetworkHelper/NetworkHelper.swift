@@ -42,5 +42,3 @@ class Resource<T> {
         self.page = page
     }
 }
-
-//return URL(string: "https://api.themoviedb.org/3/movie/\(listType.rawValue)?api_key=\(Constants.API_KEY)")!

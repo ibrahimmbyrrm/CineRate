@@ -5,47 +5,95 @@
 //  Created by İbrahim Bayram on 4.06.2023.
 //
 
-
-//https://api.themoviedb.org/3/movie/popular?api_key=fe1595f8a047fd3679470acd2f65627e
-//https://api.themoviedb.org/3/movie/top_rated?api_key=fe1595f8a047fd3679470acd2f65627e
-
 import Foundation
 import UIKit
 import SDWebImage
 
-protocol ListUpdate{
-    func reloadData()
+protocol MovieListViewModelProtocol {
+    var service : ServiceRouter {get}
+    var delegate: ListUpdate? { get set }
+    var movieList: [Movie] { get }
+    var resource: Resource<InitialData> { get set }
+    var cacheKey : String {get}
+        
+    func getData()
+    func segmentChanged(_ segmentIndex : Int)
+    func numberOfRows(_ section: Int) -> Int
+    func itemAtIndex(_ index: Int) -> MovieViewModel
+    func changePage(_ buttonTitle : String)
 }
-class MovieListViewModel {
- 
-    var delegate : ListUpdate!
-    var movieList = [Movie]()
-    var resource = Resource<InitialData>(method: .get, listType: .popular, page: 1) {
-        didSet {
-            print("didset worked")
-            getData { isSuccess in
-                self.delegate.reloadData()
-            }
+
+class MovieListViewModel : MovieListViewModelProtocol {
+    
+    init() {
+        getData()
+    }
+    
+    var service: ServiceRouter = Webservice()
+    var resource = Resource<InitialData>(method: .get, listType: .popular, page: 1)
+    var delegate : ListUpdate?
+    var cacheKey : String {
+        return "\(self.resource.listType.rawValue)\(self.resource.page)"
+    }
+    var movieList = [Movie]() {
+        didSet{
+            self.delegate?.reloadData()
         }
     }
-     
-    func getData(completion : @escaping(Bool)->Void) {
-        Webservice().callApi(resource: resource) { [weak self] result in
+    //MARK: - Access to Webservice and set MovieList
+    func getData() {
+        
+        //If data trying to fetch is saved previously, viewModel is not going to call api.It's going to read cache for data.
+        if let cachedData = CacheManager.shared.readCacheData(forKey: cacheKey) {
+            self.movieList = cachedData
+            print("Data has been fetched from CACHE")
+            return
+        }
+        
+        service.callApi(resource: resource) { [weak self] result in
             switch result {
             case .success(let initialData):
+                print("ViewModel accessed to WebService")
                 self?.movieList = initialData.results
-                completion(true)
+                self?.movieList.saveOnCache(forkey: self?.cacheKey)
             case.failure(let erorr):
                 print(erorr.rawValue)
             }
         }
     }
-    
+
     func numberOfRows(_ section : Int) -> Int {
         return movieList.count
     }
     func itemAtIndex(_ index : Int) -> MovieViewModel {
         return MovieViewModel(movie: movieList[index])
+    }
+    //MARK: - Changing page by clicked button.
+    func changePage(_ buttonTitle : String) {
+        switch buttonTitle {
+        case "Next Page":
+            self.resource.page += 1
+        case "Previous Page":
+            self.resource.page -= 1
+        default:
+            break
+        }
+        getData()
+    }
+    //MARK: - Change list type by segmented control index.
+    func segmentChanged(_ segmentIndex : Int) {
+        switch segmentIndex {
+        case 0:
+            self.resource.listType = .popular
+        case 1:
+            self.resource.listType = .topRated
+        case 2:
+            self.resource.listType = .upcoming
+        default:
+            break
+        }
+        self.resource.page = 1
+        getData()
     }
     
 }

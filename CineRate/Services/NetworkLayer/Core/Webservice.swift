@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct Webservice {
-    static let shared = Webservice()
+protocol ServiceRouter {
+    func callApi<T : Codable>(resource : Resource<T>,completion : @escaping(Result<T,httpError>) -> Void )
+}
+
+struct Webservice : ServiceRouter{
     
     func callApi<T : Codable>(resource : Resource<T>,completion : @escaping(Result<T,httpError>) -> Void ) {
         var urlRequest = URLRequest(url: resource.baseURL)
@@ -18,17 +21,17 @@ struct Webservice {
             if error != nil {
                 completion(.failure(.badUrl))
             }
-            guard let data = data else {return}
-            print(data)
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
             let results = try? JSONDecoder().decode(T.self, from: data)
-            print(results)
             guard let results = results else {
                 completion(.failure(.parsingError))
                 return}
             completion(.success(results))
         }.resume()
     }
-    
-    
-    
+
 }
+

@@ -75,8 +75,8 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "API_KEY"
-            value = "fe1595f8a047fd3679470acd2f65627e"
+            key = "AUTH"
+            value = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTE1OTVmOGEwNDdmZDM2Nzk0NzBhY2QyZjY1NjI3ZSIsInN1YiI6IjYzZDY1ZDg2OTU1YzY1MDBhODQxMjQyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JAWjGs_vrbfsq66nPQQ_XpqneBn9NR-k_fM0RiON7w4"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

@@ -10,4 +10,5 @@ import Foundation
 enum authMethod {
     case login
     case signup
+    case signout
 }

@@ -7,12 +7,13 @@
 
 import Foundation
 
-class AuthenticationViewModel {
-    private let authService: AuthenticationProtocol
+protocol AuthenticatorService {
+    var authService: AuthenticationProtocol {get set}
+}
+
+class AuthenticationViewModel : AuthenticatorService {
     
-    init(authService: AuthenticationProtocol = FirebaseAuthService.shared) {
-        self.authService = authService
-    }
+    lazy var authService: AuthenticationProtocol = FirebaseAuthService.shared
     
     func authenticateUser(method : authMethod,credentials: UserCredentials, completion: @escaping (Bool) -> Void) {
         authService.authenticateUser(method: method, credentials: credentials) { result in
