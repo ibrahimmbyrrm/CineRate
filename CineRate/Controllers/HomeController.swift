@@ -96,7 +96,7 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     func reloadData() {
         DispatchQueue.main.async {
                 self.navigationItem.leftBarButtonItem?.isEnabled = (self.listVM.resource.page > 1)
-                self.navigationItem.rightBarButtonItem?.isEnabled = (self.listVM.resource.page < 3)
+                self.navigationItem.rightBarButtonItem?.isEnabled = (self.listVM.resource.page < 2)
         }
         self.collectionView.reloadAsync()
     }
