@@ -23,7 +23,7 @@ class HomeController : UIViewController {
         segmented.insertSegment(withTitle: "Upcoming", at: 2, animated: true)
         segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
-        segmented.selectedSegmentTintColor = UIColor(red: 96/255, green: 122/255, blue: 91/255, alpha: 1)
+        segmented.selectedSegmentTintColor = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
         segmented.tintColor = .white
         return segmented
     }()
@@ -37,7 +37,7 @@ class HomeController : UIViewController {
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         collectionView.register(FilmCollectionViewCell.self, forCellWithReuseIdentifier: "FilmCell")
         return collectionView
     }()
@@ -46,7 +46,7 @@ class HomeController : UIViewController {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutClicked))
         toolbar.tintColor = .red
-        toolbar.barTintColor = UIColor(red: 173/255, green: 219/255, blue: 164/255, alpha: 1)
+        toolbar.barTintColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
         return toolbar
     }()
@@ -58,13 +58,27 @@ class HomeController : UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         listVM.delegate = self
+       
+        
         title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
     }
     
     func setupViews() {
+        if let navigationBar = self.navigationController?.navigationBar {
+            // navigationItem'ın titleTextAttributes özelliğini alın
+            var attributes = navigationBar.titleTextAttributes ?? [:]
+            // Title rengini kırmızı olarak ayarlayın
+            attributes[NSAttributedString.Key.foregroundColor] = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
+            // navigationItem'ın titleTextAttributes özelliğini güncelleyin
+            navigationBar.titleTextAttributes = attributes
+        }
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: #selector(changePage(_:)))
         navigationItem.leftBarButtonItem?.isHidden = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: #selector(changePage(_:)))
+        var attributes = navigationItem.leftBarButtonItem!.titleTextAttributes(for: .normal) ?? [:]
+        attributes[NSAttributedString.Key.foregroundColor] = UIColor.red
+        attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
+        navigationItem.leftBarButtonItem!.setTitleTextAttributes(attributes, for: .normal)
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
         view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
@@ -101,7 +115,8 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(listVM.movieList[indexPath.row].id)
+        let destVC = FilmDetailViewController(film: listVM.movieList[indexPath.row])
+        self.present(destVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

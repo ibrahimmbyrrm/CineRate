@@ -29,7 +29,7 @@ class FilmCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.gray
+        self.backgroundColor = UIColor.darkGray
         self.layer.cornerRadius = 8.0
         self.layer.borderWidth = 3.0
         self.layer.borderColor = UIColor.lightGray.cgColor

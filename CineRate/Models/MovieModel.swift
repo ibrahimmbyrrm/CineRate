@@ -13,7 +13,6 @@ struct InitialData: Codable {
 // MARK: - Result
 struct Movie: Codable {
     let adult: Bool
-    let backdropPath: String
     let genreIDS: [Int]
     let id: Int
     let originalLanguage, originalTitle, overview: String
@@ -25,7 +24,6 @@ struct Movie: Codable {
     
     enum CodingKeys: String, CodingKey {
         case adult
-        case backdropPath = "backdrop_path"
         case genreIDS = "genre_ids"
         case id
         case originalLanguage = "original_language"
