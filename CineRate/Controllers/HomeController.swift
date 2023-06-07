@@ -65,20 +65,17 @@ class HomeController : UIViewController {
     
     func setupViews() {
         if let navigationBar = self.navigationController?.navigationBar {
-            // navigationItem'ın titleTextAttributes özelliğini alın
-            var attributes = navigationBar.titleTextAttributes ?? [:]
-            // Title rengini kırmızı olarak ayarlayın
-            attributes[NSAttributedString.Key.foregroundColor] = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
-            // navigationItem'ın titleTextAttributes özelliğini güncelleyin
-            navigationBar.titleTextAttributes = attributes
+            var titleAttributes = navigationBar.titleTextAttributes ?? [:]
+            titleAttributes[NSAttributedString.Key.foregroundColor] = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
+            navigationBar.titleTextAttributes = titleAttributes
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: #selector(changePage(_:)))
         navigationItem.leftBarButtonItem?.isHidden = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: #selector(changePage(_:)))
-        var attributes = navigationItem.leftBarButtonItem!.titleTextAttributes(for: .normal) ?? [:]
-        attributes[NSAttributedString.Key.foregroundColor] = UIColor.red
-        attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
-        navigationItem.leftBarButtonItem!.setTitleTextAttributes(attributes, for: .normal)
+        var buttonAttributes = navigationItem.leftBarButtonItem?.titleTextAttributes(for: .normal) ?? [:]
+        buttonAttributes[NSAttributedString.Key.foregroundColor] = UIColor.red
+        buttonAttributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
+        navigationItem.leftBarButtonItem!.setTitleTextAttributes(buttonAttributes, for: .normal)
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
         view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
@@ -115,8 +112,10 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destVC = FilmDetailViewController(film: listVM.movieList[indexPath.row])
-        self.present(destVC, animated: true)
+        let detailViewModel : MovieDetailViewModel = listVM.createViewModel(for: indexPath.row)
+        let movieDetailController = MovieDetailController(detailVM: detailViewModel)
+        navigationController?.pushViewController(movieDetailController, animated: true)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -126,7 +125,7 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmCell", for: indexPath) as! FilmCollectionViewCell
-        let movieVM = listVM.itemAtIndex(indexPath.row)
+        let movieVM : MovieViewModel = listVM.createViewModel(for: indexPath.row)
         cell.configureCell(viewModel: movieVM)
         return cell
     }

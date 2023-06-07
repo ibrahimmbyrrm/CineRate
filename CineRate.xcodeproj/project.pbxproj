@@ -15,6 +15,10 @@
 		801C15C52A2CF90A002D98B8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C42A2CF90A002D98B8 /* HomeController.swift */; };
 		801C15C72A2D07C4002D98B8 /* CollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */; };
 		801C15C92A2D098D002D98B8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C82A2D098D002D98B8 /* UIView+Extension.swift */; };
+		802717112A3131AF000395F7 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717102A3131AF000395F7 /* MovieDetailViewModel.swift */; };
+		802717132A313994000395F7 /* MCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717122A313994000395F7 /* MCLabel.swift */; };
+		802717162A313EC4000395F7 /* MCAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717142A313EC4000395F7 /* MCAlertController.swift */; };
+		802717172A313EC4000395F7 /* MCAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802717152A313EC4000395F7 /* MCAlert.xib */; };
 		803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A822A24F40D00636C42 /* AppDelegate.swift */; };
 		803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A842A24F40D00636C42 /* SceneDelegate.swift */; };
 		803B6A8A2A24F40D00636C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 803B6A882A24F40D00636C42 /* Main.storyboard */; };
@@ -85,6 +89,10 @@
 		801C15C42A2CF90A002D98B8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extension.swift"; sourceTree = "<group>"; };
 		801C15C82A2D098D002D98B8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		802717102A3131AF000395F7 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		802717122A313994000395F7 /* MCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCLabel.swift; sourceTree = "<group>"; };
+		802717142A313EC4000395F7 /* MCAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCAlertController.swift; sourceTree = "<group>"; };
+		802717152A313EC4000395F7 /* MCAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MCAlert.xib; sourceTree = "<group>"; };
 		803B6A7F2A24F40D00636C42 /* CineRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		803B6A822A24F40D00636C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		803B6A842A24F40D00636C42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +257,7 @@
 				803B6ABF2A28B50000636C42 /* OnboardingListViewModel.swift */,
 				803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */,
 				80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */,
+				802717102A3131AF000395F7 /* MovieDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -258,6 +267,9 @@
 			children = (
 				803B6ABA2A26759E00636C42 /* OnboardingCell.swift */,
 				80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */,
+				802717122A313994000395F7 /* MCLabel.swift */,
+				802717142A313EC4000395F7 /* MCAlertController.swift */,
+				802717152A313EC4000395F7 /* MCAlert.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -451,6 +463,7 @@
 				803B6AC42A28C4E700636C42 /* GoogleService-Info.plist in Resources */,
 				803B6A8C2A24F40E00636C42 /* Assets.xcassets in Resources */,
 				803B6A8A2A24F40D00636C42 /* Main.storyboard in Resources */,
+				802717172A313EC4000395F7 /* MCAlert.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +502,7 @@
 				801C15C72A2D07C4002D98B8 /* CollectionView+Extension.swift in Sources */,
 				803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */,
 				803B6ABB2A26759E00636C42 /* OnboardingCell.swift in Sources */,
+				802717132A313994000395F7 /* MCLabel.swift in Sources */,
 				803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */,
 				80DB11FB2A2E189B006BDA79 /* CacheManager.swift in Sources */,
@@ -497,8 +511,10 @@
 				80CAA6D82A2E869700EDEB56 /* MovieDetailController.swift in Sources */,
 				803B6AE62A28D33400636C42 /* FirebaseHelper.swift in Sources */,
 				801C15C52A2CF90A002D98B8 /* HomeController.swift in Sources */,
+				802717112A3131AF000395F7 /* MovieDetailViewModel.swift in Sources */,
 				803B6ADD2A28D18B00636C42 /* UserCredentials.swift in Sources */,
 				801C15C92A2D098D002D98B8 /* UIView+Extension.swift in Sources */,
+				802717162A313EC4000395F7 /* MCAlertController.swift in Sources */,
 				801C15C32A2CF4D8002D98B8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

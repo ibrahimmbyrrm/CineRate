@@ -19,8 +19,8 @@ protocol MovieListViewModelProtocol {
     func getData()
     func segmentChanged(_ segmentIndex : Int)
     func numberOfRows(_ section: Int) -> Int
-    func itemAtIndex(_ index: Int) -> MovieViewModel
     func changePage(_ buttonTitle : String)
+    func createViewModel<T: MovieBased>(for index: Int) -> T
 }
 
 class MovieListViewModel : MovieListViewModelProtocol {
@@ -65,8 +65,9 @@ class MovieListViewModel : MovieListViewModelProtocol {
     func numberOfRows(_ section : Int) -> Int {
         return movieList.count
     }
-    func itemAtIndex(_ index : Int) -> MovieViewModel {
-        return MovieViewModel(movie: movieList[index])
+    //We can create both MovieViewModel and MovieDetailViewModel with one function.
+    func createViewModel<T: MovieBased>(for index: Int) -> T {
+        return T(movie: movieList[index])
     }
     //MARK: - Changing page by clicked button.
     func changePage(_ buttonTitle : String) {
@@ -95,16 +96,15 @@ class MovieListViewModel : MovieListViewModelProtocol {
         self.resource.page = 1
         getData()
     }
-    
+
 }
 
-struct MovieViewModel {
-    let movie : Movie
+struct MovieViewModel : MovieBased {
+    var movie : Movie
     
     init(movie: Movie) {
         self.movie = movie
     }
-
     
 }
 
