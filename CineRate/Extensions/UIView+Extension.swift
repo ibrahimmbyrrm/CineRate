@@ -29,4 +29,12 @@ extension UIView {
             view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         }
     }
+    
+    @IBInspectable var cornerRadius : Double {
+        get {
+            self.layer.cornerRadius
+        }set {
+            self.layer.cornerRadius = newValue
+        }
+    }
 }

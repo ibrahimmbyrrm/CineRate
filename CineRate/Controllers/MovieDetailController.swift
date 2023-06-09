@@ -98,8 +98,11 @@ class MovieDetailController : UIViewController {
     }
     
     @objc func seeCommentsButtonTapped() {
-       
+        let commentsTableViewController = MovieCommentsTableViewController()
+        commentsTableViewController.movie = selectedMovieVM.movie
+        navigationController?.pushViewController(commentsTableViewController, animated: true)
     }
+    
     private func populateData() {
         self.title = selectedMovieVM.title
         releaseDateLabel.text = selectedMovieVM.date
@@ -108,7 +111,6 @@ class MovieDetailController : UIViewController {
         if let posterURL = URL(string: "\(Constants.imageBaseUrl)\(selectedMovieVM.posterPath)") {
             moviePosterImageView.sd_setImage(with: posterURL, completed: nil)
         }
-        
     }
     
     @objc func backToHome() {

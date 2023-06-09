@@ -11,6 +11,7 @@ import Firebase
 
 protocol ListUpdate{
     func reloadData()
+    func showAlert(error : httpError)
 }
 
 
@@ -102,6 +103,12 @@ class HomeController : UIViewController {
 }
 
 extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource, ListUpdate{
+    func showAlert(error : httpError) {
+        let mcAlert = MCAlertController(error: error)
+        mcAlert.modalPresentationStyle = .fullScreen
+        self.present(mcAlert, animated: true)
+    }
+    
     //When the movieList changed, viewModel called reloadData function with protocol and our collectionView reloads data async.Also changes next and previous buttons view.
     func reloadData() {
         DispatchQueue.main.async {

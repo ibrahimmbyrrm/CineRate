@@ -57,6 +57,7 @@ class MovieListViewModel : MovieListViewModelProtocol {
                 self?.movieList = initialData.results
                 self?.movieList.saveOnCache(forkey: self?.cacheKey)
             case.failure(let erorr):
+                self?.delegate?.showAlert(error: erorr)
                 print(erorr.rawValue)
             }
         }
@@ -77,7 +78,7 @@ class MovieListViewModel : MovieListViewModelProtocol {
         case "Previous Page":
             self.resource.page -= 1
         default:
-            break
+            self.delegate?.showAlert(error: .generalError)
         }
         getData()
     }

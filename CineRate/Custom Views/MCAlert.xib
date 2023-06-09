@@ -10,28 +10,85 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MCAlertController" customModule="CineRate" customModuleProvider="target">
             <connections>
+                <outlet property="errorDescription" destination="vPj-W9-5RV" id="D7P-Tf-Qov"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="mcAlert" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ybb-46-raY">
-                    <rect key="frame" x="55" y="314" width="282" height="225"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-e6-Ugk">
+                    <rect key="frame" x="30" y="302" width="334" height="213"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avB-k8-0uX">
+                            <rect key="frame" x="8" y="8" width="318" height="26"/>
+                            <color key="backgroundColor" red="1" green="0.63599747620000002" blue="0.24048306250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="Id0-Pt-48C"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="asd" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vPj-W9-5RV">
+                            <rect key="frame" x="8" y="49" width="318" height="100"/>
+                            <color key="backgroundColor" red="1" green="0.63599747620000002" blue="0.24048306250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="318" id="bLp-X5-Cqv"/>
+                            </constraints>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tg-kX-Hgv">
+                            <rect key="frame" x="19" y="165" width="296" height="35"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="1" green="0.63599747620000002" blue="0.24048306250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="closeClicked:" destination="-1" eventType="touchUpInside" id="7Ak-o8-WCe"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.63599747620000002" blue="0.24048306250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="vPj-W9-5RV" firstAttribute="top" secondItem="avB-k8-0uX" secondAttribute="bottom" constant="15" id="0QI-i8-wPG"/>
+                        <constraint firstItem="vPj-W9-5RV" firstAttribute="centerX" secondItem="5XW-e6-Ugk" secondAttribute="centerX" id="1ib-L2-jol"/>
+                        <constraint firstItem="avB-k8-0uX" firstAttribute="top" secondItem="5XW-e6-Ugk" secondAttribute="topMargin" id="3r2-QW-BOO"/>
+                        <constraint firstItem="avB-k8-0uX" firstAttribute="leading" secondItem="5XW-e6-Ugk" secondAttribute="leading" constant="8" id="4mM-Xe-LQ9"/>
+                        <constraint firstItem="9tg-kX-Hgv" firstAttribute="leading" secondItem="5XW-e6-Ugk" secondAttribute="leading" constant="19" id="6BN-gO-j1v"/>
+                        <constraint firstAttribute="width" constant="334" id="6y0-GP-fo6"/>
+                        <constraint firstItem="vPj-W9-5RV" firstAttribute="leading" secondItem="5XW-e6-Ugk" secondAttribute="leading" constant="8" id="7VX-LJ-vke"/>
+                        <constraint firstItem="9tg-kX-Hgv" firstAttribute="bottom" secondItem="5XW-e6-Ugk" secondAttribute="bottomMargin" constant="-5" id="Chv-yW-3Cb"/>
+                        <constraint firstItem="avB-k8-0uX" firstAttribute="centerX" secondItem="vPj-W9-5RV" secondAttribute="centerX" id="Pyf-G4-ZON"/>
+                        <constraint firstItem="9tg-kX-Hgv" firstAttribute="top" secondItem="vPj-W9-5RV" secondAttribute="bottom" constant="16" id="k8N-If-Ahn"/>
+                        <constraint firstAttribute="height" constant="213" id="s9z-SQ-C7M"/>
+                        <constraint firstItem="vPj-W9-5RV" firstAttribute="centerX" secondItem="9tg-kX-Hgv" secondAttribute="centerX" id="tIw-ob-Wsf"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="5XW-e6-Ugk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="9Oh-jR-R5E"/>
+                <constraint firstItem="5XW-e6-Ugk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9tA-h0-1pL"/>
+                <constraint firstItem="5XW-e6-Ugk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-17.5" id="L3A-cS-C7A"/>
+                <constraint firstItem="5XW-e6-Ugk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="243" id="vXT-bO-Cs6"/>
+            </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-12.67605633802817"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -19,6 +19,11 @@
 		802717132A313994000395F7 /* MCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717122A313994000395F7 /* MCLabel.swift */; };
 		802717162A313EC4000395F7 /* MCAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717142A313EC4000395F7 /* MCAlertController.swift */; };
 		802717172A313EC4000395F7 /* MCAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802717152A313EC4000395F7 /* MCAlert.xib */; };
+		802717192A33BC0D000395F7 /* MovieCommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717182A33BC0D000395F7 /* MovieCommentsTableViewController.swift */; };
+		8027171B2A33BC2B000395F7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027171A2A33BC2B000395F7 /* CommentCell.swift */; };
+		8027171D2A33C1E9000395F7 /* FirebaseFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027171C2A33C1E9000395F7 /* FirebaseFirestoreService.swift */; };
+		8027171F2A33C25C000395F7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027171E2A33C25C000395F7 /* Comment.swift */; };
+		802717212A33CB43000395F7 /* CommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717202A33CB42000395F7 /* CommentListViewModel.swift */; };
 		803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A822A24F40D00636C42 /* AppDelegate.swift */; };
 		803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A842A24F40D00636C42 /* SceneDelegate.swift */; };
 		803B6A8A2A24F40D00636C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 803B6A882A24F40D00636C42 /* Main.storyboard */; };
@@ -41,9 +46,9 @@
 		803B6ACF2A28C7E200636C42 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 803B6ACE2A28C7E200636C42 /* FirebaseFirestore */; };
 		803B6AD12A28C7E200636C42 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 803B6AD02A28C7E200636C42 /* FirebaseFirestoreSwift */; };
 		803B6AD32A28C7E200636C42 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 803B6AD22A28C7E200636C42 /* FirebaseStorage */; };
-		803B6AD52A28C7F000636C42 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseService.swift */; };
-		803B6AD62A28C7F000636C42 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseService.swift */; };
-		803B6AD72A28C7F000636C42 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseService.swift */; };
+		803B6AD52A28C7F000636C42 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */; };
+		803B6AD62A28C7F000636C42 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */; };
+		803B6AD72A28C7F000636C42 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */; };
 		803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
 		803B6ADA2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
 		803B6ADB2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
@@ -93,6 +98,11 @@
 		802717122A313994000395F7 /* MCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCLabel.swift; sourceTree = "<group>"; };
 		802717142A313EC4000395F7 /* MCAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCAlertController.swift; sourceTree = "<group>"; };
 		802717152A313EC4000395F7 /* MCAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MCAlert.xib; sourceTree = "<group>"; };
+		802717182A33BC0D000395F7 /* MovieCommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCommentsTableViewController.swift; sourceTree = "<group>"; };
+		8027171A2A33BC2B000395F7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		8027171C2A33C1E9000395F7 /* FirebaseFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreService.swift; sourceTree = "<group>"; };
+		8027171E2A33C25C000395F7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		802717202A33CB42000395F7 /* CommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewModel.swift; sourceTree = "<group>"; };
 		803B6A7F2A24F40D00636C42 /* CineRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		803B6A822A24F40D00636C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		803B6A842A24F40D00636C42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +121,7 @@
 		803B6ABF2A28B50000636C42 /* OnboardingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingListViewModel.swift; sourceTree = "<group>"; };
 		803B6AC12A28BC5700636C42 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		803B6AC32A28C4E700636C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		803B6AD42A28C7F000636C42 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		803B6ADC2A28D18B00636C42 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		803B6AE52A28D33400636C42 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 				803B6AB82A2669C200636C42 /* OnboardingController.swift */,
 				803B6AC12A28BC5700636C42 /* LoginController.swift */,
 				80CAA6D72A2E869700EDEB56 /* MovieDetailController.swift */,
+				802717182A33BC0D000395F7 /* MovieCommentsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 				803B6ABD2A28B48700636C42 /* OnboardingModel.swift */,
 				803B6ADC2A28D18B00636C42 /* UserCredentials.swift */,
 				80095B102A2CD1DF00365087 /* MovieModel.swift */,
+				8027171E2A33C25C000395F7 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,6 +270,7 @@
 				803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */,
 				80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */,
 				802717102A3131AF000395F7 /* MovieDetailViewModel.swift */,
+				802717202A33CB42000395F7 /* CommentListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -270,6 +283,7 @@
 				802717122A313994000395F7 /* MCLabel.swift */,
 				802717142A313EC4000395F7 /* MCAlertController.swift */,
 				802717152A313EC4000395F7 /* MCAlert.xib */,
+				8027171A2A33BC2B000395F7 /* CommentCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -329,7 +343,8 @@
 		803B6AE92A28D34000636C42 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				803B6AD42A28C7F000636C42 /* FirebaseService.swift */,
+				803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */,
+				8027171C2A33C1E9000395F7 /* FirebaseFirestoreService.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -494,9 +509,11 @@
 				803B6AB92A2669C200636C42 /* OnboardingController.swift in Sources */,
 				803B6AC02A28B50000636C42 /* OnboardingListViewModel.swift in Sources */,
 				803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
-				803B6AD52A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				803B6AD52A28C7F000636C42 /* FirebaseAuthService.swift in Sources */,
+				802717212A33CB43000395F7 /* CommentListViewModel.swift in Sources */,
 				80DB11FD2A2E19BD006BDA79 /* Array+Extension.swift in Sources */,
 				80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */,
+				8027171D2A33C1E9000395F7 /* FirebaseFirestoreService.swift in Sources */,
 				80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */,
 				803B6ABE2A28B48700636C42 /* OnboardingModel.swift in Sources */,
 				801C15C72A2D07C4002D98B8 /* CollectionView+Extension.swift in Sources */,
@@ -514,8 +531,11 @@
 				802717112A3131AF000395F7 /* MovieDetailViewModel.swift in Sources */,
 				803B6ADD2A28D18B00636C42 /* UserCredentials.swift in Sources */,
 				801C15C92A2D098D002D98B8 /* UIView+Extension.swift in Sources */,
+				8027171F2A33C25C000395F7 /* Comment.swift in Sources */,
 				802717162A313EC4000395F7 /* MCAlertController.swift in Sources */,
 				801C15C32A2CF4D8002D98B8 /* Constants.swift in Sources */,
+				802717192A33BC0D000395F7 /* MovieCommentsTableViewController.swift in Sources */,
+				8027171B2A33BC2B000395F7 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				803B6AF02A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
-				803B6AD62A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				803B6AD62A28C7F000636C42 /* FirebaseAuthService.swift in Sources */,
 				803B6AF42A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6ADE2A28D18B00636C42 /* UserCredentials.swift in Sources */,
 				803B6A9A2A24F40E00636C42 /* CineRateTests.swift in Sources */,
@@ -539,7 +559,7 @@
 			files = (
 				803B6AF12A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AA62A24F40E00636C42 /* CineRateUITestsLaunchTests.swift in Sources */,
-				803B6AD72A28C7F000636C42 /* FirebaseService.swift in Sources */,
+				803B6AD72A28C7F000636C42 /* FirebaseAuthService.swift in Sources */,
 				803B6ADB2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AA42A24F40E00636C42 /* CineRateUITests.swift in Sources */,
 				803B6AE82A28D33400636C42 /* FirebaseHelper.swift in Sources */,
