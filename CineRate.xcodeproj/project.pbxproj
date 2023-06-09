@@ -24,6 +24,10 @@
 		8027171D2A33C1E9000395F7 /* FirebaseFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027171C2A33C1E9000395F7 /* FirebaseFirestoreService.swift */; };
 		8027171F2A33C25C000395F7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027171E2A33C25C000395F7 /* Comment.swift */; };
 		802717212A33CB43000395F7 /* CommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717202A33CB42000395F7 /* CommentListViewModel.swift */; };
+		8027172B2A33D1A0000395F7 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027172A2A33D1A0000395F7 /* OnboardingViewModel.swift */; };
+		802717302A33D23A000395F7 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027172F2A33D23A000395F7 /* MovieViewModel.swift */; };
+		802717382A33D29E000395F7 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717372A33D29E000395F7 /* CommentViewModel.swift */; };
+		8027173B2A33D400000395F7 /* TableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027173A2A33D400000395F7 /* TableView+Extension.swift */; };
 		803B6A832A24F40D00636C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A822A24F40D00636C42 /* AppDelegate.swift */; };
 		803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6A842A24F40D00636C42 /* SceneDelegate.swift */; };
 		803B6A8A2A24F40D00636C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 803B6A882A24F40D00636C42 /* Main.storyboard */; };
@@ -50,8 +54,6 @@
 		803B6AD62A28C7F000636C42 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */; };
 		803B6AD72A28C7F000636C42 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD42A28C7F000636C42 /* FirebaseAuthService.swift */; };
 		803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
-		803B6ADA2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
-		803B6ADB2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */; };
 		803B6ADD2A28D18B00636C42 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6ADC2A28D18B00636C42 /* UserCredentials.swift */; };
 		803B6ADE2A28D18B00636C42 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6ADC2A28D18B00636C42 /* UserCredentials.swift */; };
 		803B6ADF2A28D18B00636C42 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B6ADC2A28D18B00636C42 /* UserCredentials.swift */; };
@@ -103,6 +105,10 @@
 		8027171C2A33C1E9000395F7 /* FirebaseFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreService.swift; sourceTree = "<group>"; };
 		8027171E2A33C25C000395F7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		802717202A33CB42000395F7 /* CommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewModel.swift; sourceTree = "<group>"; };
+		8027172A2A33D1A0000395F7 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		8027172F2A33D23A000395F7 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		802717372A33D29E000395F7 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		8027173A2A33D400000395F7 /* TableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Extension.swift"; sourceTree = "<group>"; };
 		803B6A7F2A24F40D00636C42 /* CineRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		803B6A822A24F40D00636C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		803B6A842A24F40D00636C42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +178,168 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		802717222A33D078000395F7 /* MCLabel */ = {
+			isa = PBXGroup;
+			children = (
+				802717122A313994000395F7 /* MCLabel.swift */,
+			);
+			path = MCLabel;
+			sourceTree = "<group>";
+		};
+		802717232A33D089000395F7 /* MCAlert */ = {
+			isa = PBXGroup;
+			children = (
+				802717152A313EC4000395F7 /* MCAlert.xib */,
+				802717142A313EC4000395F7 /* MCAlertController.swift */,
+			);
+			path = MCAlert;
+			sourceTree = "<group>";
+		};
+		802717242A33D094000395F7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8027171A2A33BC2B000395F7 /* CommentCell.swift */,
+				80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */,
+				803B6ABA2A26759E00636C42 /* OnboardingCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		802717252A33D14E000395F7 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				802717342A33D266000395F7 /* CommentsModule */,
+				802717312A33D24B000395F7 /* MovieDetailModule */,
+				8027172C2A33D221000395F7 /* HomeModule */,
+				802717272A33D16B000395F7 /* LoginModule */,
+				802717262A33D151000395F7 /* OnboardingModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		802717262A33D151000395F7 /* OnboardingModule */ = {
+			isa = PBXGroup;
+			children = (
+				802717292A33D188000395F7 /* ViewModels */,
+				802717282A33D17E000395F7 /* Views */,
+			);
+			path = OnboardingModule;
+			sourceTree = "<group>";
+		};
+		802717272A33D16B000395F7 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */,
+				803B6AC12A28BC5700636C42 /* LoginController.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		802717282A33D17E000395F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				803B6AB82A2669C200636C42 /* OnboardingController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		802717292A33D188000395F7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				803B6ABF2A28B50000636C42 /* OnboardingListViewModel.swift */,
+				8027172A2A33D1A0000395F7 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8027172C2A33D221000395F7 /* HomeModule */ = {
+			isa = PBXGroup;
+			children = (
+				8027172E2A33D227000395F7 /* ViewModels */,
+				8027172D2A33D225000395F7 /* View */,
+			);
+			path = HomeModule;
+			sourceTree = "<group>";
+		};
+		8027172D2A33D225000395F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				801C15C42A2CF90A002D98B8 /* HomeController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8027172E2A33D227000395F7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */,
+				8027172F2A33D23A000395F7 /* MovieViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		802717312A33D24B000395F7 /* MovieDetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				802717332A33D254000395F7 /* ViewModels */,
+				802717322A33D250000395F7 /* View */,
+			);
+			path = MovieDetailModule;
+			sourceTree = "<group>";
+		};
+		802717322A33D250000395F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				80CAA6D72A2E869700EDEB56 /* MovieDetailController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		802717332A33D254000395F7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				802717102A3131AF000395F7 /* MovieDetailViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		802717342A33D266000395F7 /* CommentsModule */ = {
+			isa = PBXGroup;
+			children = (
+				802717362A33D291000395F7 /* ViewModels */,
+				802717352A33D28C000395F7 /* Views */,
+			);
+			path = CommentsModule;
+			sourceTree = "<group>";
+		};
+		802717352A33D28C000395F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				802717182A33BC0D000395F7 /* MovieCommentsTableViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		802717362A33D291000395F7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				802717202A33CB42000395F7 /* CommentListViewModel.swift */,
+				802717372A33D29E000395F7 /* CommentViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		802717392A33D2BE000395F7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				803B6A822A24F40D00636C42 /* AppDelegate.swift */,
+				803B6A842A24F40D00636C42 /* SceneDelegate.swift */,
+				803B6A882A24F40D00636C42 /* Main.storyboard */,
+				803B6A8D2A24F40E00636C42 /* LaunchScreen.storyboard */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		803B6A762A24F40D00636C42 = {
 			isa = PBXGroup;
 			children = (
@@ -195,18 +363,14 @@
 		803B6A812A24F40D00636C42 /* CineRate */ = {
 			isa = PBXGroup;
 			children = (
+				802717392A33D2BE000395F7 /* Core */,
 				801C15C12A2CF4D0002D98B8 /* Utils */,
+				802717252A33D14E000395F7 /* Modules */,
 				803B6AB72A24F48100636C42 /* Extensions */,
 				803B6AB62A24F47C00636C42 /* Custom Views */,
-				803B6AB52A24F47600636C42 /* ViewModels */,
 				803B6AB42A24F47300636C42 /* Models */,
 				803B6AB32A24F47000636C42 /* Services */,
-				803B6AB22A24F46C00636C42 /* Controllers */,
-				803B6A822A24F40D00636C42 /* AppDelegate.swift */,
-				803B6A842A24F40D00636C42 /* SceneDelegate.swift */,
-				803B6A882A24F40D00636C42 /* Main.storyboard */,
 				803B6A8B2A24F40E00636C42 /* Assets.xcassets */,
-				803B6A8D2A24F40E00636C42 /* LaunchScreen.storyboard */,
 				803B6A902A24F40E00636C42 /* Info.plist */,
 				803B6AC32A28C4E700636C42 /* GoogleService-Info.plist */,
 			);
@@ -230,18 +394,6 @@
 			path = CineRateUITests;
 			sourceTree = "<group>";
 		};
-		803B6AB22A24F46C00636C42 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				801C15C42A2CF90A002D98B8 /* HomeController.swift */,
-				803B6AB82A2669C200636C42 /* OnboardingController.swift */,
-				803B6AC12A28BC5700636C42 /* LoginController.swift */,
-				80CAA6D72A2E869700EDEB56 /* MovieDetailController.swift */,
-				802717182A33BC0D000395F7 /* MovieCommentsTableViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		803B6AB32A24F47000636C42 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,27 +415,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		803B6AB52A24F47600636C42 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				803B6ABF2A28B50000636C42 /* OnboardingListViewModel.swift */,
-				803B6AD82A28CB1D00636C42 /* LoginScreenViewModel.swift */,
-				80095B0E2A2CD1D600365087 /* MovieListViewModel.swift */,
-				802717102A3131AF000395F7 /* MovieDetailViewModel.swift */,
-				802717202A33CB42000395F7 /* CommentListViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		803B6AB62A24F47C00636C42 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				803B6ABA2A26759E00636C42 /* OnboardingCell.swift */,
-				80095B0C2A2CCEC600365087 /* HomeCollectionViewCell.swift */,
-				802717122A313994000395F7 /* MCLabel.swift */,
-				802717142A313EC4000395F7 /* MCAlertController.swift */,
-				802717152A313EC4000395F7 /* MCAlert.xib */,
-				8027171A2A33BC2B000395F7 /* CommentCell.swift */,
+				802717242A33D094000395F7 /* Cells */,
+				802717232A33D089000395F7 /* MCAlert */,
+				802717222A33D078000395F7 /* MCLabel */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -294,6 +431,7 @@
 				801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */,
 				801C15C82A2D098D002D98B8 /* UIView+Extension.swift */,
 				80DB11FC2A2E19BD006BDA79 /* Array+Extension.swift */,
+				8027173A2A33D400000395F7 /* TableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -508,10 +646,12 @@
 				803B6AEF2A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AB92A2669C200636C42 /* OnboardingController.swift in Sources */,
 				803B6AC02A28B50000636C42 /* OnboardingListViewModel.swift in Sources */,
+				8027172B2A33D1A0000395F7 /* OnboardingViewModel.swift in Sources */,
 				803B6AD92A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AD52A28C7F000636C42 /* FirebaseAuthService.swift in Sources */,
 				802717212A33CB43000395F7 /* CommentListViewModel.swift in Sources */,
 				80DB11FD2A2E19BD006BDA79 /* Array+Extension.swift in Sources */,
+				802717302A33D23A000395F7 /* MovieViewModel.swift in Sources */,
 				80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */,
 				8027171D2A33C1E9000395F7 /* FirebaseFirestoreService.swift in Sources */,
 				80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */,
@@ -521,6 +661,7 @@
 				803B6ABB2A26759E00636C42 /* OnboardingCell.swift in Sources */,
 				802717132A313994000395F7 /* MCLabel.swift in Sources */,
 				803B6AF32A28E0D000636C42 /* Webservice.swift in Sources */,
+				802717382A33D29E000395F7 /* CommentViewModel.swift in Sources */,
 				803B6A852A24F40D00636C42 /* SceneDelegate.swift in Sources */,
 				80DB11FB2A2E189B006BDA79 /* CacheManager.swift in Sources */,
 				80095B0F2A2CD1D600365087 /* MovieListViewModel.swift in Sources */,
@@ -533,6 +674,7 @@
 				801C15C92A2D098D002D98B8 /* UIView+Extension.swift in Sources */,
 				8027171F2A33C25C000395F7 /* Comment.swift in Sources */,
 				802717162A313EC4000395F7 /* MCAlertController.swift in Sources */,
+				8027173B2A33D400000395F7 /* TableView+Extension.swift in Sources */,
 				801C15C32A2CF4D8002D98B8 /* Constants.swift in Sources */,
 				802717192A33BC0D000395F7 /* MovieCommentsTableViewController.swift in Sources */,
 				8027171B2A33BC2B000395F7 /* CommentCell.swift in Sources */,
@@ -548,7 +690,6 @@
 				803B6AF42A28E0D000636C42 /* Webservice.swift in Sources */,
 				803B6ADE2A28D18B00636C42 /* UserCredentials.swift in Sources */,
 				803B6A9A2A24F40E00636C42 /* CineRateTests.swift in Sources */,
-				803B6ADA2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AE72A28D33400636C42 /* FirebaseHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,7 +701,6 @@
 				803B6AF12A28E0CB00636C42 /* NetworkHelper.swift in Sources */,
 				803B6AA62A24F40E00636C42 /* CineRateUITestsLaunchTests.swift in Sources */,
 				803B6AD72A28C7F000636C42 /* FirebaseAuthService.swift in Sources */,
-				803B6ADB2A28CB1D00636C42 /* LoginScreenViewModel.swift in Sources */,
 				803B6AA42A24F40E00636C42 /* CineRateUITests.swift in Sources */,
 				803B6AE82A28D33400636C42 /* FirebaseHelper.swift in Sources */,
 				803B6ADF2A28D18B00636C42 /* UserCredentials.swift in Sources */,

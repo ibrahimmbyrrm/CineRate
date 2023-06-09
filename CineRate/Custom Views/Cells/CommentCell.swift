@@ -13,16 +13,19 @@ import UIKit
 class CommentTableViewCell: UITableViewCell {
     private let usernameLabel : UILabel = {
         let label = UILabel()
+        label.textColor = .orange
         label.font = UIFont.systemFont(ofSize: 23)
         return label
     }()
     private let commentLabel : UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     private let dateLabel : UILabel = {
         let label = UILabel()
+        label.textColor = .orange
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .gray
         return label
@@ -38,15 +41,16 @@ class CommentTableViewCell: UITableViewCell {
         setupViews()
     }
     
-    func configure(comment : Comment) {
-        self.commentLabel.text = comment.comment
-        self.usernameLabel.text = comment.owner
-        self.dateLabel.text = comment.date
+    func configure(commentVM : CommentViewModel) {
+        self.commentLabel.text = commentVM.commentContent
+        self.usernameLabel.text = commentVM.owner
+        self.dateLabel.text = commentVM.date
     }
 
     private func setupViews() {
         // Kullanıcı adı label'ı
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         contentView.addSubview(usernameLabel)
         NSLayoutConstraint.activate([
             usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

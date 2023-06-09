@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CommentListViewProtocol {
+    func refreshData()
+}
+
 class MovieCommentsTableViewController: UITableViewController {
     
     private let messageLabel : UILabel = {
@@ -17,25 +21,21 @@ class MovieCommentsTableViewController: UITableViewController {
         label.numberOfLines = 0
         return label
     }()
-    
-    var comments = [Comment]() {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
-    var movie : Movie!
+
+    var commentListVM : CommentListViewModelProtocol!
+    var selectedVM : MovieDetailViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        FirebaseFirestoreService().fetchCommentsa(movieID: self.movie.id) { comments in
-            self.comments = comments!
-        }
-        
+        commentListVM.fetchData()
+        commentListVM.delegate = self
     }
     
     private func setupViews() {
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "CommentCell")
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         tableView.estimatedRowHeight = 100
         tableView.backgroundView = messageLabel
         tableView.tableFooterView = UIView()
@@ -44,24 +44,37 @@ class MovieCommentsTableViewController: UITableViewController {
     
 
     @objc func addCommentTapped() {
-        FirebaseFirestoreService().saveComment(movie: movie, comment: "klmasfkmlfdskldsfklndknl")
-        
+        let alertController = UIAlertController(title: "Add your comment", message: nil, preferredStyle: .alert)
+        alertController.addTextField()
+        alertController.textFields?.first?.placeholder = "What do you think about this movie?"
+        let saveButton = UIAlertAction(title: "Save", style: .default) { action in
+            guard let comment = alertController.textFields?.first?.text else {return}
+            FirebaseFirestoreService.shared.saveComment(movieId: self.selectedVM.id, comment: comment)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .destructive)
+        alertController.addAction(saveButton)
+        alertController.addAction(cancelButton)
+        self.present(alertController, animated: true)
+
     }
     
 }
-extension MovieCommentsTableViewController {
+extension MovieCommentsTableViewController : CommentListViewProtocol {
+    
+    func refreshData() {
+        self.tableView.reloadAsync()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowCount = comments.count
+        let rowCount = commentListVM.numberOfRowsInSection(section)
         tableView.backgroundView?.isHidden = rowCount != 0
         return rowCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
-        
-        let comment = comments[indexPath.row]
-        cell.configure(comment: comment)
-        
+        let commentVM = commentListVM.itemAtIndex(indexPath.row)
+        cell.configure(commentVM: commentVM)
         return cell
     }
 }

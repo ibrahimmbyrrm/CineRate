@@ -99,7 +99,8 @@ class MovieDetailController : UIViewController {
     
     @objc func seeCommentsButtonTapped() {
         let commentsTableViewController = MovieCommentsTableViewController()
-        commentsTableViewController.movie = selectedMovieVM.movie
+        commentsTableViewController.commentListVM = CommentListViewModel(movieDetailVM: selectedMovieVM)
+        commentsTableViewController.selectedVM = selectedMovieVM
         navigationController?.pushViewController(commentsTableViewController, animated: true)
     }
     

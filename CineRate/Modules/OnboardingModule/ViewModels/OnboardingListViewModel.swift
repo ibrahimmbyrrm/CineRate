@@ -31,21 +31,4 @@ extension OnboardingListViewModel {
     }
 }
 
-class OnboardingViewModel {
-    let onboarding :OnboardingPage
-    
-    init(onboarding: OnboardingPage) {
-        self.onboarding = onboarding
-    }
-}
 
-extension OnboardingViewModel {
-    
-    var title : String {
-        return onboarding.title
-    }
-    
-    var description : String {
-        return onboarding.description
-    }
-}

@@ -10,12 +10,14 @@ import Firebase
 
 class FirebaseFirestoreService {
     
-    func saveComment(movie : Movie,comment : String) {
+    static let shared = FirebaseFirestoreService()
+    
+    func saveComment(movieId : Int,comment : String) {
         guard Auth.auth().currentUser != nil else {return}
         guard let username = Auth.auth().currentUser?.email?.components(separatedBy: "@").first else {return}
         let firestore = Firestore.firestore()
         let firestoreReference : DocumentReference
-        let firestoreData = ["owner" : username,"comment" : comment,"movieId" : movie.id,"date" : FieldValue.serverTimestamp()] as [String : Any]
+        let firestoreData = ["owner" : username,"comment" : comment,"movieId" : movieId,"date" : FieldValue.serverTimestamp()] as [String : Any]
         firestoreReference = firestore.collection("comments").addDocument(data: firestoreData, completion: { error in
             if error != nil {
                 print(error?.localizedDescription)
