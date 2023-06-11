@@ -6,13 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class OnboardingListViewModel {
     let onboardingPages = [
-        OnboardingPage(title: "Hoş Geldiniz", description: "Uygulamamıza hoş geldiniz! Bu onboarding ekranı size uygulamanın temel özelliklerini tanıtacak."),
-        OnboardingPage(title: "Sayfa 1", description: "Onboarding ekranının ilk sayfası."),
-        OnboardingPage(title: "Sayfa 2", description: "Onboarding ekranının ikinci sayfası."),
-        OnboardingPage(title: "Sayfa 3", description: "Onboarding ekranının üçüncü sayfası.")
+        OnboardingPage(title: "Welcome !", description: "You've come to the right place to dive into the realm of the most popular movies.",image:"onboarding1.jpg"),
+        OnboardingPage(title: "World Wide Access", description: "See comments made by people from all around the world about movies. As you watch them, add a comment yourself.",image: "onboarding2.jpg"),
+        OnboardingPage(title: "Sit Back and Enjoy the Show", description: "After finding the right movie with CineRate, all you need to do is relax and immerse yourself in the flow of the film.",image: "onboarding3.jpg"),
     ]
 }
 

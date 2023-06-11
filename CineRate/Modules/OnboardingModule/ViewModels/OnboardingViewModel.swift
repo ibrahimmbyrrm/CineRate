@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class OnboardingViewModel {
     let onboarding :OnboardingPage
@@ -23,5 +24,9 @@ extension OnboardingViewModel {
     
     var description : String {
         return onboarding.description
+    }
+    
+    var image : UIImage {
+        return UIImage(named: onboarding.image)!
     }
 }

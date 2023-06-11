@@ -118,6 +118,7 @@ extension OnboardingController: UICollectionViewDelegateFlowLayout, UICollection
         let vm = onboardingListViewModel.itemAtIndex(indexPath.row)
         cell.titleLabel.text = vm.title
         cell.descriptionLabel.text = vm.description
+        cell.imageView.image = vm.image
         return cell
     }
     

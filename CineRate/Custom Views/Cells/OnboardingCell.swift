@@ -1,10 +1,3 @@
-//
-//  OnboardingCell.swift
-//  CineRate
-//
-//  Created by İbrahim Bayram on 30.05.2023.
-//
-
 import Foundation
 import UIKit
 
@@ -29,6 +22,13 @@ class OnboardingCell: UICollectionViewCell {
         return label
     }()
     
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -41,6 +41,7 @@ class OnboardingCell: UICollectionViewCell {
     private func setupViews() {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
+        addSubview(imageView)
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -48,7 +49,13 @@ class OnboardingCell: UICollectionViewCell {
             
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32)
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            
+            imageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -16),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 300),
+            imageView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }
+
