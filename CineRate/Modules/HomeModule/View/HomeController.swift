@@ -9,13 +9,9 @@ import Foundation
 import UIKit
 import Firebase
 
-protocol ListUpdate{
-    func reloadData()
-    func showAlert(error : httpError)
-}
+typealias NavigationPerformableHomeView = HomeControllerInterface & NavigationDelegate
 
-
-class HomeController : UIViewController {
+final class HomeController : UIViewController {
     // MARK: - Programmatic UI Objects
     private let segmentedControl : UISegmentedControl = {
         let segmented = UISegmentedControl()
@@ -52,18 +48,19 @@ class HomeController : UIViewController {
         return toolbar
     }()
     
-    private var listVM : MovieListViewModelProtocol = MovieListViewModel()
+    private var listVM : HomeViewModelInterface = MovieListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        collectionView.delegate = self
-        collectionView.dataSource = self
         listVM.delegate = self
-       
-        
-        title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
+        listVM.viewDidLoad()
     }
     
+    func prepareCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+
     func setupViews() {
         if let navigationBar = self.navigationController?.navigationBar {
             var titleAttributes = navigationBar.titleTextAttributes ?? [:]
@@ -80,6 +77,8 @@ class HomeController : UIViewController {
         view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
         view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
         view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
     }
     // MARK: - Selector Functions for Programmatic Buttons
     @objc func segmentChanged(_ segment : UISegmentedControl) {
@@ -88,21 +87,17 @@ class HomeController : UIViewController {
     }
     
     @objc func signOutClicked() {
-        FirebaseAuthService.shared.authenticateUser(method: .signout, credentials: nil) { isSuccess in
-            let loginVC = self.storyboard?.instantiateViewController(identifier: "LoginController") as! LoginController
-            loginVC.modalPresentationStyle = .fullScreen
-            self.present(loginVC, animated: true)
-        }
+        listVM.signOutClicked()
     }
     
     @objc func changePage(_ sender : UIBarButtonItem) {
-        guard let title = sender.title else {return}
-        listVM.changePage(title)
+        listVM.changePage(sender.title)
     }
     
 }
-
-extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource, ListUpdate{
+    //MARK: - Delegate Functions
+extension HomeController : NavigationPerformableHomeView {
+    
     func showAlert(error : httpError) {
         let mcAlert = MCAlertController(error: error)
         mcAlert.modalPresentationStyle = .fullScreen
@@ -117,7 +112,16 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         }
         self.collectionView.reloadAsync()
     }
+    func jumpToViewController(with identifier: String) {
+        let loginVC = self.storyboard?.instantiateViewController(identifier: identifier) as! LoginController
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true)
+    }
     
+}
+
+extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource{
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewModel : MovieDetailViewModel = listVM.createViewModel(for: indexPath.row)
         let movieDetailController = MovieDetailController(detailVM: detailViewModel)
@@ -137,3 +141,4 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         return cell
     }
 }
+

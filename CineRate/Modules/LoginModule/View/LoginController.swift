@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class LoginController : UIViewController {
+class LoginController : UIViewController{
     
     private let authViewModel = AuthenticationViewModel()
     // MARK: - Programmatic UI Objects
@@ -58,15 +58,28 @@ class LoginController : UIViewController {
         return button
         
     }()
-    // MARK: --
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        authViewModel.loginDelegate = self
+        authViewModel.viewDidLoad()
+    }
+    
+    @objc private func buttonClicked(sender: UIButton) {
+        let method: authMethod = sender == signupButton ? .signup : .login
+        authViewModel.createCredential(method: method, mail: emailTextField.text, password: passwordTextField   .text)
+        
+    }
+}
+extension LoginController : LoginControllerInterface {
+    // MARK: - Segue Performer
+    func jumpToHomeScreen() {
+        self.performSegue(withIdentifier: Constants.Identifiers.loginToHomeSegue, sender: nil)
     }
     
     // MARK: - Setup All Objects and Properties
     
-    private func setupViews() {
+    func setupViews() {
         view.addSubview(logoImage)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
@@ -98,24 +111,5 @@ class LoginController : UIViewController {
         
         ])
     }
-    
-    @objc private func buttonClicked(sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
-        guard email != "" && password != "" else {return}
-        
-        let method: authMethod = sender == signupButton ? .signup : .login
-        let credentials = UserCredentials(email: email, password: password)
-        authViewModel.authenticateUser(method: method, credentials: credentials) { isSuccess in
-            isSuccess ? self.performSegue(withIdentifier: "toHome", sender: nil) : print("hata")
-        }
-    }
-    
-    private func userLoggedIn() {
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        performSegue(withIdentifier: "toHome", sender: nil)
-    }
-    
-  
 }
-
 

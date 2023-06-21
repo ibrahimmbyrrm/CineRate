@@ -7,23 +7,8 @@
 
 import Foundation
 import UIKit
-import SDWebImage
 
-protocol MovieListViewModelProtocol {
-    var service : ServiceRouter {get}
-    var delegate: ListUpdate? { get set }
-    var movieList: [Movie] { get }
-    var resource: Resource<InitialData> { get set }
-    var cacheKey : String {get}
-        
-    func getData()
-    func segmentChanged(_ segmentIndex : Int)
-    func numberOfRows(_ section: Int) -> Int
-    func changePage(_ buttonTitle : String)
-    func createViewModel<T: MovieBased>(for index: Int) -> T
-}
-
-class MovieListViewModel : MovieListViewModelProtocol {
+class MovieListViewModel : HomeViewModelInterface {
     
     init() {
         getData()
@@ -31,7 +16,7 @@ class MovieListViewModel : MovieListViewModelProtocol {
     
     var service: ServiceRouter = Webservice()
     var resource = Resource<InitialData>(method: .get, listType: .popular, page: 1)
-    var delegate : ListUpdate?
+    var delegate : NavigationPerformableHomeView?
     var cacheKey : String {
         return "\(self.resource.listType.rawValue)\(self.resource.page)"
     }
@@ -62,7 +47,7 @@ class MovieListViewModel : MovieListViewModelProtocol {
             }
         }
     }
-
+    // MARK: - CollectionView Data Source Functions
     func numberOfRows(_ section : Int) -> Int {
         return movieList.count
     }
@@ -70,8 +55,14 @@ class MovieListViewModel : MovieListViewModelProtocol {
     func createViewModel<T: MovieBased>(for index: Int) -> T {
         return T(movie: movieList[index])
     }
+    // MARK: - viewDidLoad of HomeController
+    func viewDidLoad() {
+        delegate?.prepareCollectionView()
+        delegate?.setupViews()
+    }
     //MARK: - Changing page by clicked button.
-    func changePage(_ buttonTitle : String) {
+    func changePage(_ buttonTitle : String?) {
+        guard let buttonTitle else {return}
         switch buttonTitle {
         case "Next Page":
             self.resource.page += 1
@@ -97,7 +88,12 @@ class MovieListViewModel : MovieListViewModelProtocol {
         self.resource.page = 1
         getData()
     }
-
+    // MARK: - Sign out function
+    func signOutClicked() {
+        FirebaseAuthService.shared.authenticateUser(method: .signout, credentials: nil) { isSuccess in
+            isSuccess ? self.delegate?.jumpToViewController(with: Constants.Identifiers.loginVcIdentifier) : nil
+        }
+    }
 }
 
 

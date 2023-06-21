@@ -55,7 +55,7 @@ class FilmCollectionViewCell: UICollectionViewCell {
     
     func configureCell(viewModel : MovieViewModel) {
         self.movieNameLabel.text = viewModel.title.uppercased()
-        self.movieImageView.sd_setImage(with: viewModel.posterImage)
+        self.movieImageView.setImage(with: viewModel.posterImage)
     }
 
 }

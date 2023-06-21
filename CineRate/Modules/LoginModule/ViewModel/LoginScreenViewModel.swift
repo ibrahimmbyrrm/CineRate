@@ -7,17 +7,25 @@
 
 import Foundation
 
-protocol AuthenticatorService {
-    var authService: AuthenticationProtocol {get set}
-}
-
 class AuthenticationViewModel : AuthenticatorService {
-    
+    var loginDelegate: LoginControllerInterface?
     lazy var authService: AuthenticationProtocol = FirebaseAuthService.shared
     
     func authenticateUser(method : authMethod,credentials: UserCredentials, completion: @escaping (Bool) -> Void) {
         authService.authenticateUser(method: method, credentials: credentials) { result in
             completion(result)
+        }
+    }
+    
+    func viewDidLoad() {
+        loginDelegate?.setupViews()
+    }
+    
+    func createCredential(method: authMethod,mail : String?,password : String?) {
+        guard let mail,let password else {return}
+        let credentials = UserCredentials(email: mail, password: password)
+        authenticateUser(method: method, credentials: credentials) { isSuccess in
+            isSuccess ? self.loginDelegate?.jumpToHomeScreen() : nil
         }
     }
 }

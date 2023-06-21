@@ -7,15 +7,6 @@
 
 import Foundation
 
-protocol CommentListViewModelProtocol {
-    var commentList : [Comment] {get set}
-    var delegate : CommentListViewProtocol? {get set}
-    var firebaseService : FirebaseFirestoreService {get}
-    func fetchData()
-    func numberOfRowsInSection(_ section : Int) -> Int
-    func itemAtIndex(_ index : Int) -> CommentViewModel
-}
-
 class CommentListViewModel : CommentListViewModelProtocol {
     
     var movieDetailViewModel : MovieDetailViewModel
@@ -27,6 +18,9 @@ class CommentListViewModel : CommentListViewModelProtocol {
         self.movieDetailViewModel = movieDetailVM
     }
     
+    func viewDidLoad() {
+        delegate?.setupViews()
+    }
     
     func fetchData() {
         FirebaseFirestoreService.shared.fetchCommentsa(movieID: movieDetailViewModel.id) { comments in

@@ -7,19 +7,24 @@
 
 import Foundation
 
-protocol MovieBased {
-    var movie : Movie {get set}
-    init(movie: Movie)
-}
+typealias MovieBasedViewModel = MovieBased & DetailViewModelInterface
 
-class MovieDetailViewModel : MovieBased {
+class MovieDetailViewModel : MovieBasedViewModel{
     
     var movie : Movie
+    var detailViewDelegate: DetailViewInterface?
     
     required init(movie: Movie) {
         self.movie = movie
     }
+    
+    func viewDidLoad() {
+        detailViewDelegate?.setupUI()
+        detailViewDelegate?.addSubviews()
+        detailViewDelegate?.setupConstraints()
+    }
 }
+
 
 extension MovieDetailViewModel {
     var title : String {

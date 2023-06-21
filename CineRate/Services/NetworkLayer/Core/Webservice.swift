@@ -16,7 +16,7 @@ struct Webservice : ServiceRouter{
     func callApi<T : Codable>(resource : Resource<T>,completion : @escaping(Result<T,httpError>) -> Void ) {
         var urlRequest = URLRequest(url: resource.baseURL)
         urlRequest.httpMethod = resource.method.rawValue
-        urlRequest.allHTTPHeaderFields = Constants.httpHeader
+        urlRequest.allHTTPHeaderFields = Constants.NetworkConstants.httpHeader
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             print(urlRequest)
             if error != nil {

@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol CommentListViewProtocol {
-    func refreshData()
-}
-
 class MovieCommentsTableViewController: UITableViewController {
     
     private let messageLabel : UILabel = {
@@ -23,16 +19,17 @@ class MovieCommentsTableViewController: UITableViewController {
     }()
 
     var commentListVM : CommentListViewModelProtocol!
-    var selectedVM : MovieDetailViewModel!
+    weak var selectedVM : MovieDetailViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        commentListVM.fetchData()
         commentListVM.delegate = self
+        commentListVM.fetchData()
+        commentListVM.viewDidLoad()
     }
     
-    private func setupViews() {
-        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "CommentCell")
+    func setupViews() {
+        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: Constants.Identifiers.commentCell)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
@@ -72,7 +69,7 @@ extension MovieCommentsTableViewController : CommentListViewProtocol {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.commentCell, for: indexPath) as! CommentTableViewCell
         let commentVM = commentListVM.itemAtIndex(indexPath.row)
         cell.configure(commentVM: commentVM)
         return cell

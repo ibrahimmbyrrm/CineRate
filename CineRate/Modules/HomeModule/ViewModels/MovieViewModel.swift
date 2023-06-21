@@ -21,11 +21,7 @@ extension MovieViewModel {
         return movie.title
     }
     
-    var posterImage : URL {
-        if let url = URL(string: "\(Constants.imageBaseUrl)\(movie.posterPath)") {
-            return url
-        }else {
-            return URL(string: Constants.defaultImageUrl)!
-        }
+    var posterImage : String {
+            return "\(Constants.NetworkConstants.imageBaseUrl)\(movie.posterPath)"
     }
 }

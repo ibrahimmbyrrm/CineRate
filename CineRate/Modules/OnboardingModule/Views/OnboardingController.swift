@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class OnboardingController: UIViewController {
+class OnboardingController: UIViewController, OnboardingViewInterface {
     // MARK: -Programmatic UI Objects
     private let pageControl : UIPageControl = {
         let pageControl = UIPageControl()
@@ -37,7 +37,7 @@ class OnboardingController: UIViewController {
         }
     }
     
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
@@ -49,20 +49,20 @@ class OnboardingController: UIViewController {
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: "OnboardingCell")
+        collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: Constants.Identifiers.onboardingCell)
         return collectionView
     }()
     
-    private let onboardingListViewModel = OnboardingListViewModel()
+    private var onboardingListViewModel : OnboardingViewModelInterface = OnboardingListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        
+        onboardingListViewModel.onboardingViewDelegate = self
+        onboardingListViewModel.viewDidLoad()
     }
     
     // MARK: -Setup All UI Objects and Properties
-    private func setupViews() {
+    func setupViews() {
         view.addSubview(collectionView)
         view.addSubview(nextButton)
         view.addSubview(pageControl)
@@ -85,10 +85,9 @@ class OnboardingController: UIViewController {
         ])
     }
     
-    
     @objc private func nextButtonTapped() {
         if currentPageIndex == onboardingListViewModel.lastIndex {
-            performSegue(withIdentifier: "toLogin", sender: nil)
+            performSegue(withIdentifier: Constants.Identifiers.onboardingToLoginSegue, sender: nil)
         } else {
             currentPageIndex += 1
             let indexPath = IndexPath(item: currentPageIndex, section: 0)
@@ -114,7 +113,7 @@ extension OnboardingController: UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCell", for: indexPath) as! OnboardingCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.onboardingCell, for: indexPath) as! OnboardingCell
         let vm = onboardingListViewModel.itemAtIndex(indexPath.row)
         cell.titleLabel.text = vm.title
         cell.descriptionLabel.text = vm.description

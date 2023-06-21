@@ -8,10 +8,8 @@
 import Foundation
 import UIKit
 
-class MovieDetailController : UIViewController {
-
-    
-    let selectedMovieVM : MovieDetailViewModel
+class MovieDetailController : UIViewController , DetailViewInterface{
+    var selectedMovieVM : MovieDetailViewModel
     
     init(detailVM: MovieDetailViewModel) {
         self.selectedMovieVM = detailVM
@@ -28,9 +26,11 @@ class MovieDetailController : UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let releaseDateLabel : MCLabel = {
         return MCLabel()
     }()
+    
     private let popularityLabel : MCLabel = {
        return MCLabel()
     }()
@@ -59,19 +59,27 @@ class MovieDetailController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Arka plan rengini ayarla
-        view.backgroundColor = .white
+        selectedMovieVM.detailViewDelegate = self
+        selectedMovieVM.viewDidLoad()
+       
+    }
+    func addSubviews() {
         view.addSubview(moviePosterImageView)
         view.addSubview(releaseDateLabel)
         view.addSubview(popularityLabel)
         view.addSubview(overviewTextView)
         view.addSubview(seeCommentsButton)
+    }
+    
+    func setupUI() {
+        view.backgroundColor = .white
         view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         populateData()
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToHome))
         
-        // Auto Layout constraint'lerini ayarla
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             moviePosterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             moviePosterImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
@@ -93,8 +101,6 @@ class MovieDetailController : UIViewController {
             seeCommentsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             seeCommentsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         ])
-        
-
     }
     
     @objc func seeCommentsButtonTapped() {
@@ -109,9 +115,8 @@ class MovieDetailController : UIViewController {
         releaseDateLabel.text = selectedMovieVM.date
         popularityLabel.text = selectedMovieVM.popularity
         overviewTextView.text = selectedMovieVM.overview
-        if let posterURL = URL(string: "\(Constants.imageBaseUrl)\(selectedMovieVM.posterPath)") {
-            moviePosterImageView.sd_setImage(with: posterURL, completed: nil)
-        }
+       let posterURL = "\(Constants.NetworkConstants.imageBaseUrl)\(selectedMovieVM.posterPath)"
+        moviePosterImageView.setImage(with: posterURL)
     }
     
     @objc func backToHome() {
