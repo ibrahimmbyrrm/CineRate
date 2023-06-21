@@ -64,11 +64,9 @@ class MovieDetailController : UIViewController , DetailViewInterface{
        
     }
     func addSubviews() {
-        view.addSubview(moviePosterImageView)
-        view.addSubview(releaseDateLabel)
-        view.addSubview(popularityLabel)
-        view.addSubview(overviewTextView)
-        view.addSubview(seeCommentsButton)
+        [moviePosterImageView,releaseDateLabel,popularityLabel,overviewTextView,seeCommentsButton].forEach { v in
+            view.addSubview(v)
+        }
     }
     
     func setupUI() {
@@ -76,7 +74,6 @@ class MovieDetailController : UIViewController , DetailViewInterface{
         view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         populateData()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToHome))
-        
     }
     
     func setupConstraints() {

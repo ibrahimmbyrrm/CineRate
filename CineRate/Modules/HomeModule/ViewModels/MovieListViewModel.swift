@@ -31,18 +31,17 @@ class MovieListViewModel : HomeViewModelInterface {
         //If data trying to fetch is saved previously, viewModel is not going to call api.It's going to read cache for data.
         if let cachedData = CacheManager.shared.readCacheData(forKey: cacheKey) {
             self.movieList = cachedData
-            print("Data has been fetched from CACHE")
             return
         }
         
         service.callApi(resource: resource) { [weak self] result in
+            guard let self else {return}
             switch result {
             case .success(let initialData):
-                print("ViewModel accessed to WebService")
-                self?.movieList = initialData.results
-                self?.movieList.saveOnCache(forkey: self?.cacheKey)
+                self.movieList = initialData.results
+                self.movieList.saveOnCache(forkey: self.cacheKey)
             case.failure(let erorr):
-                self?.delegate?.showAlert(error: erorr)
+                self.delegate?.showAlert(error: erorr)
                 print(erorr.rawValue)
             }
         }
@@ -51,7 +50,7 @@ class MovieListViewModel : HomeViewModelInterface {
     func numberOfRows(_ section : Int) -> Int {
         return movieList.count
     }
-    //We can create both MovieViewModel and MovieDetailViewModel with one function.
+    ///We can create both MovieViewModel and MovieDetailViewModel with one function.
     func createViewModel<T: MovieBased>(for index: Int) -> T {
         return T(movie: movieList[index])
     }

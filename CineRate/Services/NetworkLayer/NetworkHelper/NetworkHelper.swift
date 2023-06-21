@@ -25,6 +25,7 @@ enum httpMethod : String {
     case post = "POST"
 }
 //https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
+
 class Resource<T> {
     var method : httpMethod
     var listType : listType

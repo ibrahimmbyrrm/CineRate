@@ -11,7 +11,6 @@ import Firebase
 
 class LoginController : UIViewController{
     
-    private let authViewModel = AuthenticationViewModel()
     // MARK: - Programmatic UI Objects
     private let logoImage : UIImageView = {
         let imageView = UIImageView()
@@ -59,6 +58,8 @@ class LoginController : UIViewController{
         
     }()
     
+    private let authViewModel = AuthenticationViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         authViewModel.loginDelegate = self
@@ -67,7 +68,7 @@ class LoginController : UIViewController{
     
     @objc private func buttonClicked(sender: UIButton) {
         let method: authMethod = sender == signupButton ? .signup : .login
-        authViewModel.createCredential(method: method, mail: emailTextField.text, password: passwordTextField   .text)
+        authViewModel.createCredential(method: method, mail: emailTextField.text, password: passwordTextField.text)
         
     }
 }

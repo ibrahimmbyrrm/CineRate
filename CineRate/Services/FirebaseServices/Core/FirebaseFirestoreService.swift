@@ -20,7 +20,7 @@ class FirebaseFirestoreService {
         let firestoreData = ["owner" : username,"comment" : comment,"movieId" : movieId,"date" : FieldValue.serverTimestamp()] as [String : Any]
         firestoreReference = firestore.collection("comments").addDocument(data: firestoreData, completion: { error in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }else {
                 print("veri kaydedildi")
             }
@@ -41,8 +41,7 @@ class FirebaseFirestoreService {
                 dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
                 let dateString = dateFormatter.string(from: date.dateValue())
                 guard let owner = document.get("owner") as? String else {return}
-                let fetchedComment = Comment(movieId: movieID, date: dateString, owner: owner, comment: comment)
-                print(fetchedComment)
+                let fetchedComment = Comment(movieId: movieId, date: dateString, owner: owner, comment: comment)
                 list.append(fetchedComment)
             }
             completion(list)
