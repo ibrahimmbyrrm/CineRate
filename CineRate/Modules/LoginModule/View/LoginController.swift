@@ -43,7 +43,7 @@ class LoginController : UIViewController{
         button.backgroundColor = .green
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(buttonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -53,7 +53,7 @@ class LoginController : UIViewController{
         button.layer.cornerRadius = 10
         button.setTitle("Signup", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(buttonClicked), for: .touchUpInside)
         return button
         
     }()
@@ -80,37 +80,39 @@ extension LoginController : LoginControllerInterface {
     
     // MARK: - Setup All Objects and Properties
     
-    func setupViews() {
-        view.addSubview(logoImage)
-        view.addSubview(emailTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(loginButton)
-        view.addSubview(signupButton)
-        
-        NSLayoutConstraint.activate([
-            
-            logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            logoImage.widthAnchor.constraint(equalToConstant: 200),
-            logoImage.heightAnchor.constraint(equalToConstant: 200),
-            
-            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emailTextField.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 10),
-            emailTextField.widthAnchor.constraint(equalToConstant: 300),
-            
-            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            passwordTextField.widthAnchor.constraint(equalToConstant: 300),
-            
-            loginButton.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            loginButton.widthAnchor.constraint(equalTo: emailTextField.widthAnchor, multiplier: 0.5),
-                    
-            signupButton.leadingAnchor.constraint(equalTo: loginButton.trailingAnchor, constant: 10),
-            signupButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            signupButton.widthAnchor.constraint(equalTo: loginButton.widthAnchor)
-        
-        ])
+    func addSubviews() {
+        [logoImage,emailTextField,passwordTextField,loginButton,signupButton].forEach { v in
+            view.addSubview(v)
+        }
+    }
+    
+    func setupConstraints() {
+        logoImage.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            make.width.equalTo(200)
+            make.height.equalTo(200)
+        }
+        emailTextField.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(logoImage.snp.bottom).offset(10)
+            make.width.equalTo(300)
+        }
+        passwordTextField.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.width.equalTo(300)
+        }
+        loginButton.snp.makeConstraints { make in
+            make.leading.equalTo(emailTextField.snp.leading)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.width.equalTo(emailTextField.snp.width).multipliedBy(0.5)
+        }
+        signupButton.snp.makeConstraints { make in
+            make.leading.equalTo(loginButton.snp.trailing).offset(10)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.width.equalTo(loginButton.snp.width)
+        }
     }
 }
 

@@ -11,7 +11,9 @@ protocol HomeControllerInterface{
     func reloadData()
     func showAlert(error : httpError)
     func prepareCollectionView()
-    func setupViews()
+    func setupConstraints()
+    func prepareNavigationBar()
+    func addSubviews()
 }
 
 protocol NavigationDelegate {

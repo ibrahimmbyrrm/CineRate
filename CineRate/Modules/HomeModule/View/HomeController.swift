@@ -15,6 +15,7 @@ final class HomeController : UIViewController {
     // MARK: - Programmatic UI Objects
     private let segmentedControl : UISegmentedControl = {
         let segmented = UISegmentedControl()
+        segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.insertSegment(withTitle: "Popular", at: 0, animated: true)
         segmented.insertSegment(withTitle: "Top Rated", at: 1, animated: true)
         segmented.insertSegment(withTitle: "Upcoming", at: 2, animated: true)
@@ -34,6 +35,7 @@ final class HomeController : UIViewController {
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         collectionView.register(FilmCollectionViewCell.self, forCellWithReuseIdentifier: "FilmCell")
         return collectionView
@@ -43,6 +45,7 @@ final class HomeController : UIViewController {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutClicked))
         toolbar.tintColor = .red
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.barTintColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
         return toolbar
@@ -60,8 +63,8 @@ final class HomeController : UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
-    func setupViews() {
+    
+    func prepareNavigationBar() {
         if let navigationBar = self.navigationController?.navigationBar {
             var titleAttributes = navigationBar.titleTextAttributes ?? [:]
             titleAttributes[NSAttributedString.Key.foregroundColor] = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
@@ -74,10 +77,31 @@ final class HomeController : UIViewController {
         buttonAttributes[NSAttributedString.Key.foregroundColor] = UIColor.red
         buttonAttributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
         navigationItem.leftBarButtonItem!.setTitleTextAttributes(buttonAttributes, for: .normal)
-        view.addSubviewWithConstraints(segmentedControl, topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
-        view.addSubviewWithConstraints(collectionView, topAnchor: segmentedControl.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
-        view.addSubviewWithConstraints(toolbar, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
-        
+    }
+    
+    func addSubviews() {
+        [segmentedControl,collectionView,toolbar].forEach { v in
+            view.addSubview(v)
+        }
+    }
+
+    func setupConstraints() {
+        segmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        toolbar.snp.makeConstraints { make in
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
         title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
     }
     // MARK: - Selector Functions for Programmatic Buttons

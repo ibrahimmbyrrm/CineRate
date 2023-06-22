@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class OnboardingController: UIViewController, OnboardingViewInterface {
     // MARK: -Programmatic UI Objects
@@ -42,12 +43,7 @@ class OnboardingController: UIViewController, OnboardingViewInterface {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-        collectionView.isScrollEnabled = false
-        collectionView.isPagingEnabled = true
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: Constants.Identifiers.onboardingCell)
         return collectionView
@@ -62,27 +58,40 @@ class OnboardingController: UIViewController, OnboardingViewInterface {
     }
     
     // MARK: -Setup All UI Objects and Properties
-    func setupViews() {
-        view.addSubview(collectionView)
-        view.addSubview(nextButton)
-        view.addSubview(pageControl)
-        // Configure Collection View
+    func addSubviews() {
+        [collectionView,nextButton,pageControl].forEach { v in
+            view.addSubview(v)
+        }
+    }
+    
+    func prepareCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = false
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+    }
+    
+    func preparePageControl() {
         pageControl.numberOfPages = onboardingListViewModel.onboardingPages.count
-        // Layout Settings
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -16),
-            
-            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-        ])
+    }
+    
+    func setupConstraints() {
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+        }
+        pageControl.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.bottom.equalTo(nextButton.snp.top).offset(-16)
+        }
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.bottom.equalTo(view.snp.bottom).offset(-30)
+        }
     }
     
     @objc private func nextButtonTapped() {

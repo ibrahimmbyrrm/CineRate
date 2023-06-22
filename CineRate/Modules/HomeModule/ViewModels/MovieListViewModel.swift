@@ -56,8 +56,10 @@ class MovieListViewModel : HomeViewModelInterface {
     }
     // MARK: - viewDidLoad of HomeController
     func viewDidLoad() {
+        delegate?.addSubviews()
         delegate?.prepareCollectionView()
-        delegate?.setupViews()
+        delegate?.setupConstraints()
+        delegate?.prepareNavigationBar()
     }
     //MARK: - Changing page by clicked button.
     func changePage(_ buttonTitle : String?) {

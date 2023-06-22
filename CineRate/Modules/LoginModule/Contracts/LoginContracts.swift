@@ -16,7 +16,8 @@ protocol AuthenticatorService {
 }
 
 protocol LoginControllerInterface {
-    func setupViews()
+    func setupConstraints()
+    func addSubviews()
     func jumpToHomeScreen()
 }
 

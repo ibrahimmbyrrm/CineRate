@@ -8,7 +8,10 @@
 import Foundation
 
 protocol OnboardingViewInterface {
-    func setupViews()
+    func setupConstraints()
+    func addSubviews()
+    func prepareCollectionView()
+    func preparePageControl()
 }
 
 protocol OnboardingViewModelInterface {

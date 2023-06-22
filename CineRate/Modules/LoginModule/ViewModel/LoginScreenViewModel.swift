@@ -18,7 +18,9 @@ class AuthenticationViewModel : AuthenticatorService {
     }
     
     func viewDidLoad() {
-        loginDelegate?.setupViews()
+        loginDelegate?.addSubviews()
+        loginDelegate?.setupConstraints()
+        
     }
     
     func createCredential(method: authMethod,mail : String?,password : String?) {

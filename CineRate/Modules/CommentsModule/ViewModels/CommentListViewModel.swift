@@ -19,7 +19,9 @@ class CommentListViewModel : CommentListViewModelProtocol {
     }
     
     func viewDidLoad() {
-        delegate?.setupViews()
+        delegate?.prepareTableView()
+        delegate?.prepareNavigationBar()
+        delegate?.setupBackgroundColor()
     }
     
     func fetchData() {

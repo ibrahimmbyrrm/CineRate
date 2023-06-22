@@ -21,7 +21,10 @@ class OnboardingListViewModel : OnboardingViewModelInterface {
 extension OnboardingListViewModel {
     
     func viewDidLoad() {
-        onboardingViewDelegate?.setupViews()
+        onboardingViewDelegate?.addSubviews()
+        onboardingViewDelegate?.setupConstraints()
+        onboardingViewDelegate?.prepareCollectionView()
+        onboardingViewDelegate?.preparePageControl()
     }
     
     var lastIndex : Int {

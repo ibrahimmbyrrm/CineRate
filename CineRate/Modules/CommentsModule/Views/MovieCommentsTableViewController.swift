@@ -28,18 +28,23 @@ class MovieCommentsTableViewController: UITableViewController {
         commentListVM.viewDidLoad()
     }
     
-    func setupViews() {
-        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: Constants.Identifiers.commentCell)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+    func setupBackgroundColor() {
         view.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-        tableView.estimatedRowHeight = 100
-        tableView.backgroundView = messageLabel
-        tableView.tableFooterView = UIView()
+    }
+    
+    func prepareNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addCommentTapped))
     }
     
-
+    func prepareTableView() {
+        tableView.estimatedRowHeight = 100
+        tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: Constants.Identifiers.commentCell)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        tableView.backgroundView = messageLabel
+        tableView.tableFooterView = UIView()
+    }
+    
     @objc func addCommentTapped() {
         let alertController = UIAlertController(title: "Add your comment", message: nil, preferredStyle: .alert)
         alertController.addTextField()

@@ -19,5 +19,7 @@ protocol CommentListViewModelProtocol {
 
 protocol CommentListViewProtocol {
     func refreshData()
-    func setupViews()
+    func setupBackgroundColor()
+    func prepareTableView()
+    func prepareNavigationBar()
 }

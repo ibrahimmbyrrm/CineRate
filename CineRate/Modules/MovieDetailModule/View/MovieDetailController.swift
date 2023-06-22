@@ -77,27 +77,30 @@ class MovieDetailController : UIViewController , DetailViewInterface{
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            moviePosterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            moviePosterImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            moviePosterImageView.widthAnchor.constraint(equalToConstant: 200),
-            moviePosterImageView.heightAnchor.constraint(equalToConstant: 300),
-            
-            releaseDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            releaseDateLabel.topAnchor.constraint(equalTo: moviePosterImageView.bottomAnchor, constant: 20),
-            
-            
-            popularityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            popularityLabel.topAnchor.constraint(equalTo: moviePosterImageView.bottomAnchor, constant: 20),
-            
-            overviewTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            overviewTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            overviewTextView.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 20),
-            overviewTextView.bottomAnchor.constraint(equalTo: seeCommentsButton.topAnchor, constant: -20),
-            
-            seeCommentsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            seeCommentsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-        ])
+        moviePosterImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(view.snp.top).offset(100)
+            make.width.equalTo(200)
+            make.height.equalTo(300)
+        }
+        releaseDateLabel.snp.makeConstraints { make in
+            make.leading.equalTo(view.snp.leading).offset(20)
+            make.top.equalTo(moviePosterImageView.snp.bottom).offset(20)
+        }
+        popularityLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(view.snp.trailing).offset(-20)
+            make.top.equalTo(moviePosterImageView.snp.bottom).offset(20)
+        }
+        overviewTextView.snp.makeConstraints { make in
+            make.leading.equalTo(view.snp.leading).offset(20)
+            make.trailing.equalTo(view.snp.trailing).offset(-20)
+            make.top.equalTo(releaseDateLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(seeCommentsButton.snp.top).offset(-20)
+        }
+        seeCommentsButton.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.bottom.equalTo(view.snp.bottom).offset(-50)
+        }
     }
     
     @objc func seeCommentsButtonTapped() {

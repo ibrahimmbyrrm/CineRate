@@ -75,6 +75,7 @@
 		80E6AC3B2A43375800EC17D9 /* CommentsContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6AC3A2A43375800EC17D9 /* CommentsContracts.swift */; };
 		80E6AC3E2A4338F200EC17D9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 80E6AC3D2A4338F200EC17D9 /* Kingfisher */; };
 		80E6AC402A43391200EC17D9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6AC3F2A43391200EC17D9 /* UIImage+Extension.swift */; };
+		80E6AC462A447B8F00EC17D9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80E6AC452A447B8F00EC17D9 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				803B6AD12A28C7E200636C42 /* FirebaseFirestoreSwift in Frameworks */,
+				80E6AC462A447B8F00EC17D9 /* SnapKit in Frameworks */,
 				803B6ACD2A28C7E200636C42 /* FirebaseDatabaseSwift in Frameworks */,
 				803B6ACF2A28C7E200636C42 /* FirebaseFirestore in Frameworks */,
 				80E6AC3E2A4338F200EC17D9 /* Kingfisher in Frameworks */,
@@ -593,6 +595,7 @@
 				803B6AD02A28C7E200636C42 /* FirebaseFirestoreSwift */,
 				803B6AD22A28C7E200636C42 /* FirebaseStorage */,
 				80E6AC3D2A4338F200EC17D9 /* Kingfisher */,
+				80E6AC452A447B8F00EC17D9 /* SnapKit */,
 			);
 			productName = CineRate;
 			productReference = 803B6A7F2A24F40D00636C42 /* CineRate.app */;
@@ -670,6 +673,7 @@
 				803B6AC72A28C7E200636C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				80095B122A2CD3EF00365087 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				80E6AC3C2A4338F200EC17D9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				80E6AC442A447B8F00EC17D9 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 803B6A802A24F40D00636C42 /* Products */;
 			projectDirPath = "";
@@ -1136,6 +1140,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		80E6AC442A447B8F00EC17D9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1173,6 +1185,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80E6AC3C2A4338F200EC17D9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		80E6AC452A447B8F00EC17D9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80E6AC442A447B8F00EC17D9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
