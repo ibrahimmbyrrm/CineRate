@@ -17,7 +17,7 @@ When you navigate to the movie details and wish to read the comments, the commen
 <br><br>
 🌅 -> Kingfisher and Firebase Framework
 <br><br>
-👨🏻‍💻 -> Programmatic UI Design and Constraints
+👨🏻‍💻 -> Programmatic UI Design and Constraints with SnapKit
 <br><br>
 👍🏻 -> Singleton Service Instances
 <br><br>
