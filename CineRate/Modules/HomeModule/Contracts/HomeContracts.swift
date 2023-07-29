@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-protocol HomeControllerInterface{
+protocol HomeControllerInterface : AnyObject{
     func reloadData()
     func showAlert(error : httpError)
     func prepareCollectionView()
@@ -16,7 +17,7 @@ protocol HomeControllerInterface{
     func addSubviews()
 }
 
-protocol NavigationDelegate {
+protocol NavigationDelegate : AnyObject {
     func jumpToViewController(with identifier : String)
 }
 
@@ -30,9 +31,14 @@ protocol HomeViewModelInterface {
     func getData()
     func segmentChanged(_ segmentIndex : Int)
     func numberOfRows(_ section: Int) -> Int
-    func changePage(_ buttonTitle : String?)
+    func changePage(_ button : UIBarButtonItem?)
     func createViewModel<T: MovieBased>(for index: Int) -> T
     func viewDidLoad()
     func signOutClicked()
     
+}
+enum PageButtonType {
+    case next
+    case previous
+    case normal
 }

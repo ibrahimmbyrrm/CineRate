@@ -9,31 +9,33 @@ import Foundation
 import UIKit
 
 class MovieListViewModel : HomeViewModelInterface {
+    var service: ServiceRouter
     
-    init() {
-        getData()
-    }
-    
-    var service: ServiceRouter = Webservice()
     var resource = Resource<InitialData>(method: .get, listType: .popular, page: 1)
-    var delegate : NavigationPerformableHomeView?
+    weak var delegate : NavigationPerformableHomeView?
+    
     var cacheKey : String {
         return "\(self.resource.listType.rawValue)\(self.resource.page)"
     }
+    
     var movieList = [Movie]() {
         didSet{
             self.delegate?.reloadData()
         }
     }
+    
+    init(service : ServiceRouter) {
+        self.service = service
+    }
+    
+   
     //MARK: - Access to Webservice and set MovieList
     func getData() {
-        
         //If data trying to fetch is saved previously, viewModel is not going to call api.It's going to read cache for data.
         if let cachedData = CacheManager.shared.readCacheData(forKey: cacheKey) {
             self.movieList = cachedData
             return
         }
-        
         service.callApi(resource: resource) { [weak self] result in
             guard let self else {return}
             switch result {
@@ -56,20 +58,21 @@ class MovieListViewModel : HomeViewModelInterface {
     }
     // MARK: - viewDidLoad of HomeController
     func viewDidLoad() {
+        getData()
         delegate?.addSubviews()
         delegate?.prepareCollectionView()
         delegate?.setupConstraints()
         delegate?.prepareNavigationBar()
     }
     //MARK: - Changing page by clicked button.
-    func changePage(_ buttonTitle : String?) {
-        guard let buttonTitle else {return}
-        switch buttonTitle {
-        case "Next Page":
+    func changePage(_ button : UIBarButtonItem?) {
+        guard let button else {return}
+        switch button.pageType {
+        case .next:
             self.resource.page += 1
-        case "Previous Page":
+        case .previous:
             self.resource.page -= 1
-        default:
+        case .normal:
             self.delegate?.showAlert(error: .generalError)
         }
         getData()

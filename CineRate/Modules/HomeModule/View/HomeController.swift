@@ -13,20 +13,20 @@ typealias NavigationPerformableHomeView = HomeControllerInterface & NavigationDe
 
 final class HomeController : UIViewController {
     // MARK: - Programmatic UI Objects
-    private let segmentedControl : UISegmentedControl = {
+    private lazy var segmentedControl : UISegmentedControl = {
         let segmented = UISegmentedControl()
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.insertSegment(withTitle: "Popular", at: 0, animated: true)
         segmented.insertSegment(withTitle: "Top Rated", at: 1, animated: true)
         segmented.insertSegment(withTitle: "Upcoming", at: 2, animated: true)
         segmented.selectedSegmentIndex = 0
-        segmented.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
+        segmented.addTarget(nil, action: #selector(segmentChanged(_:)), for: .valueChanged)
         segmented.selectedSegmentTintColor = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
         segmented.tintColor = .white
         return segmented
     }()
     
-    private let collectionView : UICollectionView = {
+    private lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 10
         let itemWidth = (UIScreen.main.bounds.width - (spacing * 3)) / 2
@@ -40,10 +40,10 @@ final class HomeController : UIViewController {
         collectionView.register(FilmCollectionViewCell.self, forCellWithReuseIdentifier: "FilmCell")
         return collectionView
     }()
-    private let toolbar: UIToolbar = {
+    private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutClicked))
+        let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: nil, action: #selector(signOutClicked))
         toolbar.tintColor = .red
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.barTintColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
@@ -51,7 +51,7 @@ final class HomeController : UIViewController {
         return toolbar
     }()
     
-    private var listVM : HomeViewModelInterface = MovieListViewModel()
+    private var listVM : HomeViewModelInterface = MovieListViewModel(service: Webservice())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,18 +65,8 @@ final class HomeController : UIViewController {
     }
     
     func prepareNavigationBar() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            var titleAttributes = navigationBar.titleTextAttributes ?? [:]
-            titleAttributes[NSAttributedString.Key.foregroundColor] = UIColor(red: 255/255, green: 162/255, blue: 61/255, alpha: 1)
-            navigationBar.titleTextAttributes = titleAttributes
-        }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Previous Page", style: .plain, target: self, action: #selector(changePage(_:)))
-        navigationItem.leftBarButtonItem?.isHidden = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next Page", style: .plain, target: self, action: #selector(changePage(_:)))
-        var buttonAttributes = navigationItem.leftBarButtonItem?.titleTextAttributes(for: .normal) ?? [:]
-        buttonAttributes[NSAttributedString.Key.foregroundColor] = UIColor.red
-        buttonAttributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
-        navigationItem.leftBarButtonItem!.setTitleTextAttributes(buttonAttributes, for: .normal)
+        let navigationBarBuilder = HomeNavigationBarBuilder(parentNavigationController: self.navigationController)
+        navigationBarBuilder.prepareNavigationBar(target: self, previousPageSelector: #selector(changePage), nextPageSelector: #selector(changePage))
     }
     
     func addSubviews() {
@@ -105,17 +95,17 @@ final class HomeController : UIViewController {
         title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
     }
     // MARK: - Selector Functions for Programmatic Buttons
-    @objc func segmentChanged(_ segment : UISegmentedControl) {
+    @objc private func segmentChanged(_ segment : UISegmentedControl) {
         listVM.segmentChanged(segment.selectedSegmentIndex)
         title = segment.titleForSegment(at: segment.selectedSegmentIndex)
     }
     
-    @objc func signOutClicked() {
+    @objc private func signOutClicked() {
         listVM.signOutClicked()
     }
     
-    @objc func changePage(_ sender : UIBarButtonItem) {
-        listVM.changePage(sender.title)
+    @objc private func changePage(_ sender : UIBarButtonItem) {
+        listVM.changePage(sender)
     }
     
 }
@@ -127,7 +117,6 @@ extension HomeController : NavigationPerformableHomeView {
         mcAlert.modalPresentationStyle = .fullScreen
         self.present(mcAlert, animated: true)
     }
-    
     //When the movieList changed, viewModel called reloadData function with protocol and our collectionView reloads data async.Also changes next and previous buttons view.
     func reloadData() {
         DispatchQueue.main.async {

@@ -12,7 +12,7 @@ import Firebase
 class LoginController : UIViewController{
     
     // MARK: - Programmatic UI Objects
-    private let logoImage : UIImageView = {
+    private lazy var logoImage : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         imageView.contentMode = .scaleAspectFill
@@ -20,7 +20,7 @@ class LoginController : UIViewController{
         return imageView
     }()
     
-    private let emailTextField : UITextField = {
+    private lazy var emailTextField : UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Email"
         textfield.borderStyle = .roundedRect
@@ -28,7 +28,7 @@ class LoginController : UIViewController{
         return textfield
     }()
     
-    private let passwordTextField : UITextField = {
+    private lazy var passwordTextField : UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Password"
         textfield.isSecureTextEntry = true
@@ -37,7 +37,7 @@ class LoginController : UIViewController{
         return textfield
     }()
     
-    private let loginButton : UIButton = {
+    private lazy var loginButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.backgroundColor = .green
@@ -47,7 +47,7 @@ class LoginController : UIViewController{
         return button
     }()
     
-    private let signupButton : UIButton = {
+    private lazy var signupButton : UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .yellow
         button.layer.cornerRadius = 10

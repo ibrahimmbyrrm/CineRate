@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MovieDetailController : UIViewController , DetailViewInterface{
+final class MovieDetailController : UIViewController , DetailViewInterface{
     var selectedMovieVM : MovieDetailViewModel
     
     init(detailVM: MovieDetailViewModel) {
@@ -20,22 +20,22 @@ class MovieDetailController : UIViewController , DetailViewInterface{
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let moviePosterImageView : UIImageView = {
+    private lazy var moviePosterImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let releaseDateLabel : MCLabel = {
+    private lazy var releaseDateLabel : MCLabel = {
         return MCLabel()
     }()
     
-    private let popularityLabel : MCLabel = {
+    private lazy var popularityLabel : MCLabel = {
        return MCLabel()
     }()
     
-    private let overviewTextView : UITextView = {
+    private lazy var overviewTextView : UITextView = {
         let textView = UITextView()
         textView.isEditable = false
         textView.layer.cornerRadius = 20
@@ -49,7 +49,7 @@ class MovieDetailController : UIViewController , DetailViewInterface{
         return textView
     }()
     
-    private let seeCommentsButton : UIButton = {
+    private lazy var seeCommentsButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("See Comments", for: .normal)
         button.addTarget(self, action: #selector(seeCommentsButtonTapped), for: .touchUpInside)

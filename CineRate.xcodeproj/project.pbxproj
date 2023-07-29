@@ -14,6 +14,8 @@
 		801C15C52A2CF90A002D98B8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C42A2CF90A002D98B8 /* HomeController.swift */; };
 		801C15C72A2D07C4002D98B8 /* CollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */; };
 		801C15C92A2D098D002D98B8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C15C82A2D098D002D98B8 /* UIView+Extension.swift */; };
+		8025F1BF2A75B71E00EA331F /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1BE2A75B71E00EA331F /* UIBarButtonItem+Extension.swift */; };
+		8025F1C12A75B79600EA331F /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1C02A75B79600EA331F /* HomeNavigationBar.swift */; };
 		802717112A3131AF000395F7 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717102A3131AF000395F7 /* MovieDetailViewModel.swift */; };
 		802717132A313994000395F7 /* MCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717122A313994000395F7 /* MCLabel.swift */; };
 		802717162A313EC4000395F7 /* MCAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802717142A313EC4000395F7 /* MCAlertController.swift */; };
@@ -103,6 +105,8 @@
 		801C15C42A2CF90A002D98B8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		801C15C62A2D07C4002D98B8 /* CollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extension.swift"; sourceTree = "<group>"; };
 		801C15C82A2D098D002D98B8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8025F1BE2A75B71E00EA331F /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		8025F1C02A75B79600EA331F /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		802717102A3131AF000395F7 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		802717122A313994000395F7 /* MCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCLabel.swift; sourceTree = "<group>"; };
 		802717142A313EC4000395F7 /* MCAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCAlertController.swift; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				801C15C42A2CF90A002D98B8 /* HomeController.swift */,
+				8025F1C02A75B79600EA331F /* HomeNavigationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				80DB11FC2A2E19BD006BDA79 /* Array+Extension.swift */,
 				8027173A2A33D400000395F7 /* TableView+Extension.swift */,
 				80E6AC3F2A43391200EC17D9 /* UIImage+Extension.swift */,
+				8025F1BE2A75B71E00EA331F /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -736,6 +742,7 @@
 				80DB11FD2A2E19BD006BDA79 /* Array+Extension.swift in Sources */,
 				802717302A33D23A000395F7 /* MovieViewModel.swift in Sources */,
 				80095B0D2A2CCEC600365087 /* HomeCollectionViewCell.swift in Sources */,
+				8025F1C12A75B79600EA331F /* HomeNavigationBar.swift in Sources */,
 				8027171D2A33C1E9000395F7 /* FirebaseFirestoreService.swift in Sources */,
 				80095B112A2CD1DF00365087 /* MovieModel.swift in Sources */,
 				803B6ABE2A28B48700636C42 /* OnboardingModel.swift in Sources */,
@@ -760,6 +767,7 @@
 				8027171F2A33C25C000395F7 /* Comment.swift in Sources */,
 				802717162A313EC4000395F7 /* MCAlertController.swift in Sources */,
 				8027173B2A33D400000395F7 /* TableView+Extension.swift in Sources */,
+				8025F1BF2A75B71E00EA331F /* UIBarButtonItem+Extension.swift in Sources */,
 				801C15C32A2CF4D8002D98B8 /* Constants.swift in Sources */,
 				802717192A33BC0D000395F7 /* MovieCommentsTableViewController.swift in Sources */,
 				8027171B2A33BC2B000395F7 /* CommentCell.swift in Sources */,
