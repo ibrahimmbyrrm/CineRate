@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias MovieBasedViewModel = MovieBased & DetailViewModelInterface
 
@@ -22,6 +23,21 @@ class MovieDetailViewModel : MovieBasedViewModel{
         detailViewDelegate?.setupUI()
         detailViewDelegate?.addSubviews()
         detailViewDelegate?.setupConstraints()
+    }
+    
+    func seeCommentsTapped() {
+        let commentsTableViewController = MovieCommentsTableViewController()
+        commentsTableViewController.commentListVM = CommentListViewModel(movieDetailVM: self,firebaseService: FirebaseFirestoreService.shared)
+        commentsTableViewController.selectedVM = self
+        if let mainVC = (detailViewDelegate as? UIViewController) {
+            mainVC.navigationController?.pushViewController(commentsTableViewController, animated: true)
+        }
+
+    }
+    func backToHome() {
+        if let mainVC = (detailViewDelegate as? UIViewController) {
+            mainVC.navigationController?.popViewController(animated: true)
+        }
     }
 }
 

@@ -14,6 +14,8 @@ protocol MovieBased {
 
 protocol DetailViewModelInterface {
     func viewDidLoad()
+    func seeCommentsTapped()
+    func backToHome()
     var detailViewDelegate : DetailViewInterface? {get set}
 }
 

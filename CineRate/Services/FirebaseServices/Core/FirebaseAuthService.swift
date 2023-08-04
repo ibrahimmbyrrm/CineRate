@@ -16,6 +16,7 @@ protocol AuthenticationProtocol {
 
 class FirebaseAuthService: AuthenticationProtocol {
     static let shared = FirebaseAuthService()
+    private init() {}
     
     func authenticateUser(method : authMethod,credentials: UserCredentials?, completion: @escaping (Bool) -> Void) {
         

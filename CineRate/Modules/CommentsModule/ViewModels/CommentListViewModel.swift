@@ -10,12 +10,13 @@ import Foundation
 class CommentListViewModel : CommentListViewModelProtocol {
     
     var movieDetailViewModel : MovieDetailViewModel
-    lazy var firebaseService: FirebaseFirestoreService = FirebaseFirestoreService()
+    var firebaseService: FirebaseFirestoreService
     var delegate: CommentListViewProtocol?
     var commentList : [Comment] = []
     
-    init(movieDetailVM : MovieDetailViewModel) {
+    init(movieDetailVM : MovieDetailViewModel,firebaseService : FirebaseFirestoreService) {
         self.movieDetailViewModel = movieDetailVM
+        self.firebaseService = firebaseService
     }
     
     func viewDidLoad() {

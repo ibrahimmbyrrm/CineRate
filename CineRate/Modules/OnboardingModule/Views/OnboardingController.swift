@@ -22,7 +22,7 @@ class OnboardingController: UIViewController, OnboardingViewInterface {
     private let nextButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Next", for: .normal)
-        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

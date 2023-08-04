@@ -8,8 +8,15 @@
 import Foundation
 
 class AuthenticationViewModel : AuthenticatorService {
+    
     var loginDelegate: LoginControllerInterface?
-    lazy var authService: AuthenticationProtocol = FirebaseAuthService.shared
+    
+    var authService: AuthenticationProtocol
+    
+    init(service : AuthenticationProtocol) {
+        self.authService = service
+    }
+    
     
     func authenticateUser(method : authMethod,credentials: UserCredentials, completion: @escaping (Bool) -> Void) {
         authService.authenticateUser(method: method, credentials: credentials) { result in

@@ -104,10 +104,7 @@ final class MovieDetailController : UIViewController , DetailViewInterface{
     }
     
     @objc func seeCommentsButtonTapped() {
-        let commentsTableViewController = MovieCommentsTableViewController()
-        commentsTableViewController.commentListVM = CommentListViewModel(movieDetailVM: selectedMovieVM)
-        commentsTableViewController.selectedVM = selectedMovieVM
-        navigationController?.pushViewController(commentsTableViewController, animated: true)
+        selectedMovieVM.seeCommentsTapped()
     }
     
     private func populateData() {
@@ -120,7 +117,7 @@ final class MovieDetailController : UIViewController , DetailViewInterface{
     }
     
     @objc func backToHome() {
-        self.navigationController?.popViewController(animated: true)
+        selectedMovieVM.backToHome()
     }
 
 }

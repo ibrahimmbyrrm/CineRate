@@ -58,7 +58,7 @@ class LoginController : UIViewController{
         
     }()
     
-    private let authViewModel = AuthenticationViewModel()
+    private let authViewModel = AuthenticationViewModel(service: FirebaseAuthService.shared)
     
     override func viewDidLoad() {
         super.viewDidLoad()
