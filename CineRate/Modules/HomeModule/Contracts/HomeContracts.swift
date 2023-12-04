@@ -10,7 +10,7 @@ import UIKit
 
 protocol HomeControllerInterface : AnyObject{
     func reloadData()
-    func showAlert(error : httpError)
+    func showAlert(errorVC : UIViewController)
     func prepareCollectionView()
     func setupConstraints()
     func prepareNavigationBar()

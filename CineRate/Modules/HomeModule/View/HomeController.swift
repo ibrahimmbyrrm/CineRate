@@ -70,11 +70,9 @@ final class HomeController : UIViewController {
     }
     
     func addSubviews() {
-        [segmentedControl,collectionView,toolbar].forEach { v in
-            view.addSubview(v)
-        }
+        [segmentedControl,collectionView,toolbar].forEach({view.addSubview($0)})
     }
-
+    
     func setupConstraints() {
         segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -109,21 +107,17 @@ final class HomeController : UIViewController {
     }
     
 }
-    //MARK: - Delegate Functions
+//MARK: - Delegate Functions
 extension HomeController : NavigationPerformableHomeView {
     
-    func showAlert(error : httpError) {
-        let mcAlert = MCAlertController(error: error)
-        mcAlert.modalPresentationStyle = .fullScreen
-        self.present(mcAlert, animated: true)
+    func showAlert(errorVC: UIViewController) {
+        self.present(errorVC, animated: true)
     }
     //When the movieList changed, viewModel called reloadData function with protocol and our collectionView reloads data async.Also changes next and previous buttons view.
     func reloadData() {
-        DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem?.isHidden = !(self.listVM.resource.page > 1)
-                self.navigationItem.rightBarButtonItem?.isHidden = !(self.listVM.resource.page < 2)
-        }
-        self.collectionView.reloadAsync()
+        self.navigationItem.leftBarButtonItem?.isHidden = !(self.listVM.resource.page > 1)
+        self.navigationItem.rightBarButtonItem?.isHidden = !(self.listVM.resource.page < 2)
+        self.collectionView.reloadData()
     }
     func jumpToViewController(with identifier: String) {
         let loginVC = self.storyboard?.instantiateViewController(identifier: identifier) as! LoginController
@@ -134,7 +128,7 @@ extension HomeController : NavigationPerformableHomeView {
 }
 
 extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource{
- 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewModel : MovieDetailViewModel = listVM.createViewModel(for: indexPath.row)
         let movieDetailController = MovieDetailController(detailVM: detailViewModel)

@@ -64,7 +64,7 @@ class MovieCommentsTableViewController: UITableViewController {
 extension MovieCommentsTableViewController : CommentListViewProtocol {
     
     func refreshData() {
-        self.tableView.reloadAsync()
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

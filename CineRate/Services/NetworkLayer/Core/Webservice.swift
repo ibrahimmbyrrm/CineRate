@@ -29,7 +29,9 @@ struct Webservice : ServiceRouter{
             guard let results = results else {
                 completion(.failure(.parsingError))
                 return}
-            completion(.success(results))
+            DispatchQueue.main.async {
+                completion(.success(results))
+            }
         }.resume()
     }
 

@@ -23,6 +23,8 @@ class LoginController : UIViewController{
     private lazy var emailTextField : UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Email"
+        textfield.autocapitalizationType = .none
+        textfield.textContentType = .emailAddress
         textfield.borderStyle = .roundedRect
         textfield.translatesAutoresizingMaskIntoConstraints = false
         return textfield
@@ -32,6 +34,7 @@ class LoginController : UIViewController{
         let textfield = UITextField()
         textfield.placeholder = "Password"
         textfield.isSecureTextEntry = true
+        textfield.autocapitalizationType = .none
         textfield.borderStyle = .roundedRect
         textfield.translatesAutoresizingMaskIntoConstraints = false
         return textfield
@@ -67,8 +70,7 @@ class LoginController : UIViewController{
     }
     
     @objc private func buttonClicked(sender: UIButton) {
-        let method: authMethod = sender == signupButton ? .signup : .login
-        authViewModel.createCredential(method: method, mail: emailTextField.text, password: passwordTextField.text)
+        authViewModel.createCredential(method: (sender == signupButton ? .signup : .login), mail: emailTextField.text, password: passwordTextField.text)
         
     }
 }
@@ -81,9 +83,7 @@ extension LoginController : LoginControllerInterface {
     // MARK: - Setup All Objects and Properties
     
     func addSubviews() {
-        [logoImage,emailTextField,passwordTextField,loginButton,signupButton].forEach { v in
-            view.addSubview(v)
-        }
+        [logoImage,emailTextField,passwordTextField,loginButton,signupButton].forEach({view.addSubview($0)})
     }
     
     func setupConstraints() {

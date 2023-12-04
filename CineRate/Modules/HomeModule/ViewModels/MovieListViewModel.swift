@@ -37,13 +37,14 @@ class MovieListViewModel : HomeViewModelInterface {
             return
         }
         service.callApi(resource: resource) { [weak self] result in
-            guard let self else {return}
             switch result {
             case .success(let initialData):
-                self.movieList = initialData.results
-                self.movieList.saveOnCache(forkey: self.cacheKey)
+                self?.movieList = initialData.results
+                self?.movieList.saveOnCache(forkey: self?.cacheKey)
             case.failure(let erorr):
-                self.delegate?.showAlert(error: erorr)
+                let alert = MCAlertController(error: erorr)
+                alert.modalPresentationStyle = .fullScreen
+                self?.delegate?.showAlert(errorVC: alert)
                 print(erorr.rawValue)
             }
         }
@@ -73,7 +74,9 @@ class MovieListViewModel : HomeViewModelInterface {
         case .previous:
             self.resource.page -= 1
         case .normal:
-            self.delegate?.showAlert(error: .generalError)
+            let errorVC = MCAlertController(error: .generalError)
+            errorVC.modalPresentationStyle = .fullScreen
+            self.delegate?.showAlert(errorVC: errorVC)
         }
         getData()
     }

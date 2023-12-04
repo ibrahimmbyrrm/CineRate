@@ -26,10 +26,9 @@ class CommentListViewModel : CommentListViewModelProtocol {
     }
     
     func fetchData() {
-        FirebaseFirestoreService.shared.fetchCommentsa(movieID: movieDetailViewModel.id) { comments in
-            guard let comments = comments else {return}
-            self.commentList = comments
-            self.delegate?.refreshData()
+        FirebaseFirestoreService.shared.fetchCommentsa(movieID: movieDetailViewModel.id) { [weak self] comments in
+            self?.commentList = comments ?? []
+            self?.delegate?.refreshData()
         }
     }
     
