@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingListViewModel : OnboardingViewModelInterface {
     
-    var onboardingViewDelegate: OnboardingViewInterface?
+    weak var onboardingViewDelegate: OnboardingViewInterface?
     
     lazy var onboardingPages = [
         OnboardingPage(title: "Welcome !", description: "You've come to the right place to dive into the realm of the most popular movies.",image:"onboarding1.jpg"),

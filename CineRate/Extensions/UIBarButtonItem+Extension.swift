@@ -10,9 +10,9 @@ import UIKit
 
 extension UIBarButtonItem {
     var pageType : PageButtonType {
-        if self.title == "Next Page" {
+        if self.image == UIImage(systemName: "arrow.right") {
             return .next
-        }else if self.title == "Previous Page" {
+        }else if self.image == UIImage(systemName: "arrow.left") {
             return .previous
         }else {
             return .normal

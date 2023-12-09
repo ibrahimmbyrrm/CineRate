@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CommentListViewModelProtocol {
+protocol CommentListViewModelProtocol : AnyObject {
     var commentList : [Comment] {get set}
     var delegate : CommentListViewProtocol? {get set}
     var firebaseService : FirebaseFirestoreService {get}

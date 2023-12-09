@@ -114,5 +114,8 @@ extension LoginController : LoginControllerInterface {
             make.width.equalTo(loginButton.snp.width)
         }
     }
+    func showAlert(errorVC: UIViewController) {
+        self.present(errorVC, animated: true)
+    }
 }
 

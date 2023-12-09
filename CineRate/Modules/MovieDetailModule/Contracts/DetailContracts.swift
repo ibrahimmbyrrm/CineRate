@@ -19,7 +19,7 @@ protocol DetailViewModelInterface {
     var detailViewDelegate : DetailViewInterface? {get set}
 }
 
-protocol DetailViewInterface {
+protocol DetailViewInterface : AnyObject {
     func addSubviews()
     func setupConstraints()
     func setupUI()

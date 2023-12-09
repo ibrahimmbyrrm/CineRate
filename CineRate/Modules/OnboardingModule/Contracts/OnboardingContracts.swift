@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol OnboardingViewInterface {
+protocol OnboardingViewInterface : AnyObject {
     func setupConstraints()
     func addSubviews()
     func prepareCollectionView()

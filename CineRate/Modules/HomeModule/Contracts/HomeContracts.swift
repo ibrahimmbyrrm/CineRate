@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 
-protocol HomeControllerInterface : AnyObject{
-    func reloadData()
+protocol AlertShowable {
     func showAlert(errorVC : UIViewController)
+}
+
+protocol HomeControllerInterface : AnyObject,AlertShowable{
+    func reloadData()
     func prepareCollectionView()
     func setupConstraints()
     func prepareNavigationBar()
@@ -26,7 +29,6 @@ protocol HomeViewModelInterface {
     var delegate: NavigationPerformableHomeView? { get set }
     var movieList: [Movie] { get }
     var resource: Resource<InitialData> { get set }
-    var cacheKey : String {get}
     
     func getData()
     func segmentChanged(_ segmentIndex : Int)

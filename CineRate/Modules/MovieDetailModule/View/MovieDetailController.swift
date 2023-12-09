@@ -39,7 +39,7 @@ final class MovieDetailController : UIViewController , DetailViewInterface{
         let textView = UITextView()
         textView.isEditable = false
         textView.layer.cornerRadius = 20
-        textView.layer.borderWidth = 3.0
+        textView.layer.borderWidth = 1.0
         textView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = UIColor(red: 48/255, green: 48/255, blue: 48/255, alpha: 1)
@@ -84,11 +84,11 @@ final class MovieDetailController : UIViewController , DetailViewInterface{
             make.height.equalTo(300)
         }
         releaseDateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(20)
+            make.leading.equalTo(view.snp.leading).offset(-4)
             make.top.equalTo(moviePosterImageView.snp.bottom).offset(20)
         }
         popularityLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(view.snp.trailing).offset(-20)
+            make.trailing.equalTo(view.snp.trailing).offset(4)
             make.top.equalTo(moviePosterImageView.snp.bottom).offset(20)
         }
         overviewTextView.snp.makeConstraints { make in

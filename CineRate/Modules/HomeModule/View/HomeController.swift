@@ -44,13 +44,17 @@ final class HomeController : UIViewController {
         let toolbar = UIToolbar()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let toolbarButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: nil, action: #selector(signOutClicked))
+        toolbarButton.tintColor = .red
+        let nextPageButton = UIBarButtonItem(image: UIImage(systemName: "arrow.right"), style: .plain, target: self, action: #selector(changePage(_:)))
+        let previousPageButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(changePage(_:)))
+        [nextPageButton,previousPageButton].forEach({$0.tintColor = .orange})
         toolbar.tintColor = .red
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.barTintColor = UIColor(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-        toolbar.items = [flexibleSpace, toolbarButton, flexibleSpace]
+        toolbar.items = [previousPageButton,flexibleSpace, toolbarButton, flexibleSpace,nextPageButton
+        ]
         return toolbar
     }()
-    
     private var listVM : HomeViewModelInterface = MovieListViewModel(service: Webservice())
     
     override func viewDidLoad() {
@@ -66,7 +70,7 @@ final class HomeController : UIViewController {
     
     func prepareNavigationBar() {
         let navigationBarBuilder = HomeNavigationBarBuilder(parentNavigationController: self.navigationController)
-        navigationBarBuilder.prepareNavigationBar(target: self, previousPageSelector: #selector(changePage), nextPageSelector: #selector(changePage))
+        navigationBarBuilder.prepareNavigationBar()
     }
     
     func addSubviews() {
@@ -115,10 +119,11 @@ extension HomeController : NavigationPerformableHomeView {
     }
     //When the movieList changed, viewModel called reloadData function with protocol and our collectionView reloads data async.Also changes next and previous buttons view.
     func reloadData() {
-        self.navigationItem.leftBarButtonItem?.isHidden = !(self.listVM.resource.page > 1)
-        self.navigationItem.rightBarButtonItem?.isHidden = !(self.listVM.resource.page < 2)
+        self.toolbar.items?[0].isHidden = !(self.listVM.resource.page > 1)
+        self.toolbar.items?[4].isHidden = !(self.listVM.resource.page < 3)
         self.collectionView.reloadData()
     }
+    
     func jumpToViewController(with identifier: String) {
         let loginVC = self.storyboard?.instantiateViewController(identifier: identifier) as! LoginController
         loginVC.modalPresentationStyle = .fullScreen
@@ -138,7 +143,6 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listVM.numberOfRows(section)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

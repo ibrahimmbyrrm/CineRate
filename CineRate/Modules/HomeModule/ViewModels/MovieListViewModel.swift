@@ -14,7 +14,7 @@ class MovieListViewModel : HomeViewModelInterface {
     var resource = Resource<InitialData>(method: .get, listType: .popular, page: 1)
     weak var delegate : NavigationPerformableHomeView?
     
-    var cacheKey : String {
+    private var cacheKey : String {
         return "\(self.resource.listType.rawValue)\(self.resource.page)"
     }
     
@@ -42,10 +42,12 @@ class MovieListViewModel : HomeViewModelInterface {
                 self?.movieList = initialData.results
                 self?.movieList.saveOnCache(forkey: self?.cacheKey)
             case.failure(let erorr):
-                let alert = MCAlertController(error: erorr)
-                alert.modalPresentationStyle = .fullScreen
-                self?.delegate?.showAlert(errorVC: alert)
-                print(erorr.rawValue)
+                DispatchQueue.main.async {
+                    let alert = MCAlertController(error: erorr)
+                    alert.modalPresentationStyle = .fullScreen
+                    self?.delegate?.showAlert(errorVC: alert)
+                    print(erorr.rawValue)
+                }
             }
         }
     }

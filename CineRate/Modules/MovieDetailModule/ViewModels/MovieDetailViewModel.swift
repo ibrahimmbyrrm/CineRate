@@ -13,7 +13,7 @@ typealias MovieBasedViewModel = MovieBased & DetailViewModelInterface
 class MovieDetailViewModel : MovieBasedViewModel{
     
     var movie : Movie
-    var detailViewDelegate: DetailViewInterface?
+    weak var detailViewDelegate: DetailViewInterface?
     
     required init(movie: Movie) {
         self.movie = movie

@@ -15,7 +15,7 @@ protocol AuthenticatorService {
     func createCredential(method: authMethod,mail : String?,password : String?)
 }
 
-protocol LoginControllerInterface {
+protocol LoginControllerInterface : AlertShowable {
     func setupConstraints()
     func addSubviews()
     func jumpToHomeScreen()

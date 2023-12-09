@@ -5,7 +5,7 @@
 //  Created by İbrahim Bayram on 1.06.2023.
 //
 
-import Foundation
+import UIKit
 
 class AuthenticationViewModel : AuthenticatorService {
     
@@ -33,8 +33,15 @@ class AuthenticationViewModel : AuthenticatorService {
     func createCredential(method: authMethod,mail : String?,password : String?) {
         guard let mail,let password else {return}
         let credentials = UserCredentials(email: mail, password: password)
-        authenticateUser(method: method, credentials: credentials) { isSuccess in
-            isSuccess ? self.loginDelegate?.jumpToHomeScreen() : nil
+        authenticateUser(method: method, credentials: credentials) { [weak self] isSuccess in
+            if isSuccess {
+                self?.loginDelegate?.jumpToHomeScreen()
+            }else {
+                let alert = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(okButton)
+                self?.loginDelegate?.showAlert(errorVC: alert)
+            }
         }
     }
 }

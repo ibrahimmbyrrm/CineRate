@@ -18,7 +18,7 @@ class MovieCommentsTableViewController: UITableViewController {
         return label
     }()
 
-    var commentListVM : CommentListViewModelProtocol!
+    weak var commentListVM : CommentListViewModelProtocol!
     weak var selectedVM : MovieDetailViewModel!
     
     override func viewDidLoad() {
